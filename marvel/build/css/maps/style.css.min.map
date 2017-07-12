@@ -1,0 +1,1 @@
+{"version":3,"file":"../style.css","sources":["style.scss"],"sourcesContent":["$aliceblue: #f0f8ff;\n$black: #000;\n\nbody {\n  background-color: $aliceblue;\n  color: $black;\n}\n     "],"names":[],"mappings":";AAGA,AAAA,IAAI,CAAC;EACH,gBAAgB,EAJN,OAAO;EAKjB,KAAK,EAJC,IAAI;CAKX"}
