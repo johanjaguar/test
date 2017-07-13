@@ -9,7 +9,7 @@ function getMarvelData ( url, publicKey, privateKey, specific ){
 	url = url + "?apikey=" + publicKey; 
 	url = url + "&ts=" + ts;
 	url = url + "&hash=" + hash;
-	return url; 
+	return url;  
 }; 
 url = getMarvelData( url, publicKey, privateKey, 'characters');
 
