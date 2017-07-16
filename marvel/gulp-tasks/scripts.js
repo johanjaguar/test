@@ -9,7 +9,6 @@ var reload = browserSync.reload;
 
 gulp.task('scripts', function(){
   return gulp.src( [
-    'getData.js',
     'md5.js',
     'getMarvelUrl.js',
     'main.js',
