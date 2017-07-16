@@ -1,8 +1,17 @@
-$aliceblue: #f0f8ff;
-$black: #000;
+@import 'common/mixins';
+@import 'common/colors';
+@import 'common/typography';
 
-body {
-  background-color: $aliceblue;
-  color: $black;
+@import 'components/header';
+@import 'components/body';
+@import 'components/characters';
+@import 'components/favourites';
+
+.logo {
+  width: 150px;
+
+  img {
+    height: auto;
+    max-width: 100%;
+  }
 }
-       

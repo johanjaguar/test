@@ -22,7 +22,7 @@ gulp.task( 'default',
       {cwd: 'build'} ,
       ['bs-reload']
     );
-    gulp.watch("index.html",
+    gulp.watch(['index.html', 'partials/**/*.html'],
       {cwd: ''} ,
       ['bs-reload']
     );

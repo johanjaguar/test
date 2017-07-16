@@ -1,0 +1,6 @@
+.favourites-title {
+  &::before {
+    background: url('../images-op/favourites.png') no-repeat;
+    padding-right: 10px;
+  }
+}

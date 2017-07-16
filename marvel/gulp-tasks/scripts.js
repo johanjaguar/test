@@ -11,7 +11,10 @@ gulp.task('scripts', function(){
   return gulp.src( [
     'getData.js',
     'md5.js',
-    'custom.js'
+    'getMarvelUrl.js',
+    'main.js',
+    //'route.js',
+    'angular/controllers/main.js'
   ], {cwd: 'src/javascript'} )
     .pipe(sourcemaps.init())
     .pipe(babel({presets: ['babili']}))

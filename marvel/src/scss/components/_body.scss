@@ -1,0 +1,35 @@
+body {
+  background: $color-fondo-body;
+  margin: 0;
+}
+
+.content-box {
+  background: $color-fondo-content;
+  padding: 20px 10px;
+  width: 75%;
+}
+
+.aside-box {
+  background: $color-fondo-aside;
+  padding: 20px 10px;
+  width: 25%;
+}
+
+.container {
+  display: flex;
+}
+
+h2 {
+  @include font-size(28);
+  color: $color-letra-h2;
+  font-family: $fuente-open-sans;
+  font-weight: bolder;
+  &::before {
+    background: url('../images-op/characters.png') no-repeat;
+    content: '';
+    display: block;
+    float: left;
+    height: 40px;
+    width: 40px;
+  }
+}

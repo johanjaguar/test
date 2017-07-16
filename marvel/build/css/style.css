@@ -1,7 +1,90 @@
-/* line 4, src/scss/style.scss */
+@import url("https://fonts.googleapis.com/css?family=Quicksand");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:700,800");
+/* line 1, src/scss/components/_header.scss */
+.header {
+  background: #2b2525;
+  padding: 12px 30px;
+}
+
+/* line 1, src/scss/components/_body.scss */
 body {
-  background-color: #f0f8ff;
-  color: #000;
+  background: #eaeaea;
+  margin: 0;
+}
+
+/* line 6, src/scss/components/_body.scss */
+.content-box {
+  background: #eaeaea;
+  padding: 20px 10px;
+  width: 75%;
+}
+
+/* line 12, src/scss/components/_body.scss */
+.aside-box {
+  background: #e2e2e2;
+  padding: 20px 10px;
+  width: 25%;
+}
+
+/* line 18, src/scss/components/_body.scss */
+.container {
+  display: flex;
+}
+
+/* line 22, src/scss/components/_body.scss */
+h2 {
+  font-size: 2.8rem;
+  font-size: 28px;
+  color: #3b3130;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bolder;
+}
+
+/* line 27, src/scss/components/_body.scss */
+h2::before {
+  background: url("../images-op/characters.png") no-repeat;
+  content: '';
+  display: block;
+  float: left;
+  height: 40px;
+  width: 40px;
+}
+
+/* line 1, src/scss/components/_characters.scss */
+.characters {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+}
+
+/* line 9, src/scss/components/_characters.scss */
+.character {
+  width: 33.3333%;
+}
+
+/* line 12, src/scss/components/_characters.scss */
+.character__thumbnail {
+  height: auto;
+  max-width: 100%;
+}
+
+/* line 2, src/scss/components/_favourites.scss */
+.favourites-title::before {
+  background: url("../images-op/favourites.png") no-repeat;
+  padding-right: 10px;
+}
+
+/* line 10, src/scss/style.scss */
+.logo {
+  width: 150px;
+}
+
+/* line 13, src/scss/style.scss */
+.logo img {
+  height: auto;
+  max-width: 100%;
 }
 
 /*# sourceMappingURL=maps/style.css.map */

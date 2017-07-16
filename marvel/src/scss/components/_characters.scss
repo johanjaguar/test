@@ -1,0 +1,17 @@
+.characters {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.character {
+  width: 33.3333%;
+
+  &__thumbnail {
+    height: auto;
+    max-width: 100%;
+  }
+}
+

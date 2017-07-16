@@ -6,6 +6,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
+var sassLint = require('gulp-sass-lint');
 
 //tarea sass
 gulp.task('sass', function(){
@@ -19,6 +20,19 @@ gulp.task('sass', function(){
             outputStyle: 'expanded'
         }).on('error', sass.logError)
     )
+    .pipe(sassLint({
+      options: {
+        formatter: 'stylish',
+        'merge-default-rules': false
+      },
+      rules: {
+        'no-ids': 1,
+        'no-mergeable-selectors': 0
+      },
+      configFile: '/.sass-lint.yml'
+    }))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
     .pipe(sourcemaps.write('maps'))
     //.pipe(autoprefixer())
     //destino de los archivos

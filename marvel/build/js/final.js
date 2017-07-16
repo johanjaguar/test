@@ -226,29 +226,52 @@ var MD5 = function MD5(string) {
 };
 "use strict";
 
-var publicKey = "c97a0c85709eb1a2a71994d9261ffbd6";
-var privateKey = "ba63ece6936566ddc4bf1219499fd705b8e32934";
-var url = "http://gateway.marvel.com/v1/public/";
-
-function getMarvelData(url, publicKey, privateKey, specific) {
+function getHash() {
+	var publicKey = "c97a0c85709eb1a2a71994d9261ffbd6";
+	var privateKey = "ba63ece6936566ddc4bf1219499fd705b8e32934";
 	var ts = new Date().getTime();
 	var hash = MD5(ts + privateKey + publicKey);
-	url = url + specific;
-	url = url + "?apikey=" + publicKey;
-	url = url + "&ts=" + ts;
-	url = url + "&hash=" + hash;
+	hash = '?apikey=' + publicKey + "&ts=" + ts + "&hash=" + hash;
+	return hash;
+}
+
+function getMarvelUrl(complement) {
+
+	var url = "http://gateway.marvel.com/v1/public/";
+	url = url + complement + getHash();
+
 	return url;
 };
-url = getMarvelData(url, publicKey, privateKey, 'characters');
+"use strict";
 
-ajax_get(url, function (data) {
+/*var url = getMarvelUrl( 'characters') ;
+
+ajax_get( url , function(data) {
 	var datos = data['data']['results'];
 	console.log(datos);
 	var listado = "";
-	datos.forEach(function (entry) {
-		console.log(entry);
+	datos.forEach(function(entry){ 
+		//console.log(entry);
 		//listado = listado + "<li class='character__item' data-name='" + entry["name"] + "'>" + entry["description"] + "</li>";
 	});
-	document.getElementById("characters-list").innerHtml = listado;
+	//document.getElementById("characters-list").innerHtml = listado;
 });
+ */
+var app = angular.module("marvelApi", []);
+"use strict";
+
+// create the module and name it scotchApp
+app.controller('mainController', ["$scope", "$http", function ($scope, $http) {
+	$scope.baseUrl = getMarvelUrl('');
+	$scope.charactersUrl = getMarvelUrl('characters');
+	$scope.comicsUrl = getMarvelUrl('comics');
+	$scope.posts = [];
+	$scope.hash = getHash();
+	$http.get($scope.charactersUrl).success(function (data) {
+		console.log(data.data.results);
+		$scope.posts = data.data.results;
+	}).error(function (err) {
+		console.log(err);
+	});
+}]);
 //# sourceMappingURL=final.js.map

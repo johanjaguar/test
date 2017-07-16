@@ -1,0 +1,20 @@
+<h2 class="character-title">Characters</h2>
+<ul class="characters">
+  <li ng-repeat="post in posts " class="character">
+    <h3 class="character__name">{{post.name}}</h3>
+    <img class="character__thumbnail" src="{{post.thumbnail.path + '.' + post.thumbnail.extension}}"/>
+
+    <p>{{post.description}}</p>
+
+    <h3>Comics that the characters appear</h3>
+    <ul class="character__comic-list">
+      <li ng-repeat="comic in post.comics.items">
+        <a href="{{comic.resourceURI + hash}}">{{comic.name}}</a>
+      </li>
+    </ul>
+
+  </li>  
+
+</ul>
+
+ 

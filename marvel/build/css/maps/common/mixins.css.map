@@ -1,0 +1,1 @@
+{"version":3,"file":"../../common/mixins.css","sources":["common/mixins.scss"],"sourcesContent":["@mixin font-size($size-value: 16) {\n  font-size: ($size-value / 10) + rem;\n  font-size: $size-value + px;\n}\n\n  "],"names":[],"mappings":""}
