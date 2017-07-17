@@ -9,7 +9,7 @@ function getHash(){
 
 function getMarvelUrl ( complement ){
 	
-	var url = "http://gateway.marvel.com/v1/public/";  
+	var url = "https://gateway.marvel.com/v1/public/";  
 	url = url + complement + getHash();
 
 	return url; 
