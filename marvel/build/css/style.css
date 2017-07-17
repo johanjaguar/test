@@ -13,34 +13,54 @@ body {
 }
 
 /* line 6, src/scss/components/_body.scss */
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+ul,
+li,
+code,
+em,
+strong,
+b,
+i {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 24, src/scss/components/_body.scss */
 .content-box {
   background: #eaeaea;
   padding: 20px 10px;
   width: 75%;
 }
 
-/* line 12, src/scss/components/_body.scss */
+/* line 30, src/scss/components/_body.scss */
 .aside-box {
   background: #e2e2e2;
   padding: 20px 10px;
   width: 25%;
 }
 
-/* line 18, src/scss/components/_body.scss */
+/* line 36, src/scss/components/_body.scss */
 .container {
   display: flex;
 }
 
-/* line 22, src/scss/components/_body.scss */
+/* line 40, src/scss/components/_body.scss */
 h2 {
   font-size: 2.8rem;
   font-size: 28px;
   color: #3b3130;
   font-family: "Open Sans", sans-serif;
   font-weight: bolder;
+  padding-left: 20px;
 }
 
-/* line 27, src/scss/components/_body.scss */
+/* line 47, src/scss/components/_body.scss */
 h2::before {
   background: url("../images-op/characters.png") no-repeat;
   content: '';
@@ -50,24 +70,119 @@ h2::before {
   width: 40px;
 }
 
+/* line 57, src/scss/components/_body.scss */
+.row {
+  display: inline-block;
+  width: 100%;
+}
+
 /* line 1, src/scss/components/_characters.scss */
 .characters {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 0;
 }
 
-/* line 9, src/scss/components/_characters.scss */
+/* line 10, src/scss/components/_characters.scss */
 .character {
-  width: 33.3333%;
+  background: #fff;
+  border: 20px solid #eaeaea;
+  box-sizing: border-box;
+  list-style: none;
+  padding-bottom: 20px;
+  width: 50%;
 }
 
-/* line 12, src/scss/components/_characters.scss */
-.character__thumbnail {
+/* line 18, src/scss/components/_characters.scss */
+.character-thumbnail-portrait {
+  border-radius: 50%;
+  display: flex;
+  float: left;
+  height: 40%;
+  overflow: hidden;
+  position: relative;
+  transform: translate(-20px, -20px);
+  width: 40%;
+}
+
+/* line 29, src/scss/components/_characters.scss */
+.character-thumbnail {
   height: auto;
   max-width: 100%;
+  min-height: 100%;
+}
+
+/* line 35, src/scss/components/_characters.scss */
+.character-main-info {
+  box-sizing: border-box;
+  float: right;
+  padding: 0;
+  width: 60%;
+}
+
+/* line 42, src/scss/components/_characters.scss */
+.character-name {
+  font-size: 1.8rem;
+  font-size: 18px;
+  color: #3b3130;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bolder;
+  margin-top: -13px;
+  text-transform: uppercase;
+}
+
+/* line 51, src/scss/components/_characters.scss */
+.character-description {
+  font-size: 1.3rem;
+  font-size: 13px;
+  color: #776d6c;
+  font-family: "Quicksand", sans-serif;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+/* line 59, src/scss/components/_characters.scss */
+.character-view-more {
+  font-size: 1.3rem;
+  font-size: 13px;
+  background: #e81d22;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bolder;
+  padding: 10px;
+  text-decoration: none;
+}
+
+/* line 69, src/scss/components/_characters.scss */
+.character-comics-title {
+  font-size: 1.8rem;
+  font-size: 18px;
+  color: #776d6c;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bolder;
+  padding-left: 20px;
+  text-transform: capitalize;
+}
+
+/* line 78, src/scss/components/_characters.scss */
+.character-comic-list {
+  list-style: none;
+  padding-left: 20px;
+}
+
+/* line 82, src/scss/components/_characters.scss */
+.character-comic-list li {
+  font-size: 1.3rem;
+  font-size: 13px;
+  box-sizing: border-box;
+  color: #776d6c;
+  float: left;
+  font-family: "Quicksand", sans-serif;
+  line-height: 1.4;
+  padding: 10px;
+  width: 50%;
 }
 
 /* line 2, src/scss/components/_favourites.scss */

@@ -3,6 +3,24 @@ body {
   margin: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a,
+ul,
+li,
+code,
+em,
+strong,
+b,
+i {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
 .content-box {
   background: $color-fondo-content;
   padding: 20px 10px;
@@ -24,6 +42,8 @@ h2 {
   color: $color-letra-h2;
   font-family: $fuente-open-sans;
   font-weight: bolder;
+  padding-left: 20px;
+
   &::before {
     background: url('../images-op/characters.png') no-repeat;
     content: '';
@@ -32,4 +52,9 @@ h2 {
     height: 40px;
     width: 40px;
   }
+}
+
+.row {
+  display: inline-block;
+  width: 100%;
 }

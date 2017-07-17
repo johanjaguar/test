@@ -1,17 +1,94 @@
 .characters {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 0;
+
 }
 
 .character {
-  width: 33.3333%;
+  background: $color-fondo-item;
+  border: 20px solid $color-fondo-content;
+  box-sizing: border-box;
+  list-style: none;
+  padding-bottom: 20px;
+  width: 50%;
 
-  &__thumbnail {
+  &-thumbnail-portrait {
+    border-radius: 50%;
+    display: flex;
+    float: left;
+    height: 40%;
+    overflow: hidden;
+    position: relative;
+    transform: translate(-20px, -20px);
+    width: 40%;
+  }
+
+  &-thumbnail {
     height: auto;
     max-width: 100%;
+    min-height: 100%;
+  }
+
+  &-main-info {
+    box-sizing: border-box;
+    float: right;
+    padding: 0;
+    width: 60%;
+  }
+
+  &-name {
+    @include font-size(18);
+    color: $color-letra-h2;
+    font-family: $fuente-open-sans;
+    font-weight: bolder;
+    margin-top: -13px;
+    text-transform: uppercase;
+  }
+
+  &-description {
+    @include font-size(13);
+    color: $color-letra-p;
+    font-family: $fuente-quicksand;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  &-view-more {
+    @include font-size(13);
+    background: $color-fondo-boton;
+    color: $color-letra-boton;
+    font-family: $fuente-open-sans;
+    font-weight: bolder;
+    padding: 10px;
+    text-decoration: none;
+  }
+
+  &-comics-title {
+    @include font-size(18);
+    color: $color-letra-p;
+    font-family: $fuente-open-sans;
+    font-weight: bolder;
+    padding-left: 20px;
+    text-transform: capitalize;
+  }
+
+  &-comic-list {
+    list-style: none;
+    padding-left: 20px;
+
+    li {
+      @include font-size(13);
+      box-sizing: border-box;
+      color: $color-letra-p;
+      float: left;
+      font-family: $fuente-quicksand;
+      line-height: 1.4;
+      padding: 10px;
+      width: 50%;
+    }
   }
 }
 
