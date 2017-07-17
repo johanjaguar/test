@@ -220,7 +220,7 @@ function getMarvelUrl(complement) {
 
 	var url = "https://gateway.marvel.com/v1/public/";
 	url = url + complement + getHash();
-
+	console.log(url);
 	return url;
 };
 "use strict";
