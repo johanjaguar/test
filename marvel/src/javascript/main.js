@@ -11,5 +11,5 @@ ajax_get( url , function(data) {
 	//document.getElementById("characters-list").innerHtml = listado;
 });
  */
-var app = angular.module("marvelApi", []);
+var app = angular.module("marvelApi", ["LocalStorageModule"]);
       

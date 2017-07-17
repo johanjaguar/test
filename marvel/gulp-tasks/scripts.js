@@ -13,6 +13,7 @@ gulp.task('scripts', function(){
     'getMarvelUrl.js',
     'main.js',
     //'route.js',
+    'angular/dist/angular-local-storage.js',
     'angular/controllers/main.js'
   ], {cwd: 'src/javascript'} )
     .pipe(sourcemaps.init())
