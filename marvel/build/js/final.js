@@ -222,17 +222,6 @@ function getMarvelUrl(complement) {
 	url = url + complement + getHash();
 	return url;
 };
-'use strict';
-
-function checkarray($arreglo, $valor) {
-  var ID = document.getElementById('input2').value;
-  var i = myArr.indexOf(ID);
-  if (i > -1) {
-    document.getElementById('message').value = 'Exist';
-  } else {
-    document.getElementById('message').value = 'Does not exist';
-  }
-}
 "use strict";
 
 /*var url = getMarvelUrl( 'characters') ;
@@ -248,17 +237,210 @@ ajax_get( url , function(data) {
 	//document.getElementById("characters-list").innerHtml = listado;
 });
  */
-var app = angular.module("marvelApi", []);
+var app = angular.module("marvelApi", ["LocalStorageModule"]);
 "use strict";
 
-// create the module and name it scotchApp
-app.controller('mainController', ["$scope", "$http", function ($scope, $http) {
+/**
+ * An Angular module that gives you access to the browsers local storage
+ * @version v0.7.1 - 2017-06-21
+ * @link https://github.com/grevory/angular-local-storage
+ * @author grevory <greg@gregpike.ca>
+ * @license MIT License, http://www.opensource.org/licenses/MIT
+ */
+!function (a, b) {
+  var c = b.isDefined,
+      d = b.isUndefined,
+      e = b.isNumber,
+      f = b.isObject,
+      g = b.isArray,
+      h = b.isString,
+      i = b.extend,
+      j = b.toJson;b.module("LocalStorageModule", []).provider("localStorageService", function () {
+    this.prefix = "ls", this.storageType = "localStorage", this.cookie = { expiry: 30, path: "/", secure: !1 }, this.defaultToCookie = !0, this.notify = { setItem: !0, removeItem: !1 }, this.setPrefix = function (a) {
+      return this.prefix = a, this;
+    }, this.setStorageType = function (a) {
+      return this.storageType = a, this;
+    }, this.setDefaultToCookie = function (a) {
+      return this.defaultToCookie = !!a, this;
+    }, this.setStorageCookie = function (a, b, c) {
+      return this.cookie.expiry = a, this.cookie.path = b, this.cookie.secure = c, this;
+    }, this.setStorageCookieDomain = function (a) {
+      return this.cookie.domain = a, this;
+    }, this.setNotify = function (a, b) {
+      return this.notify = { setItem: a, removeItem: b }, this;
+    }, this.$get = ["$rootScope", "$window", "$document", "$parse", "$timeout", function (a, b, k, l, m) {
+      function n(c) {
+        if (c || (c = b.event), s.setItem && h(c.key) && w(c.key)) {
+          var d = v(c.key);m(function () {
+            a.$broadcast("LocalStorageModule.notification.changed", { key: d, newvalue: c.newValue, storageType: p.storageType });
+          });
+        }
+      }var o,
+          p = this,
+          q = p.prefix,
+          r = p.cookie,
+          s = p.notify,
+          t = p.storageType;k ? k[0] && (k = k[0]) : k = document, "." !== q.substr(-1) && (q = q ? q + "." : "");var u = function u(a) {
+        return q + a;
+      },
+          v = function v(a) {
+        return a.replace(new RegExp("^" + q, "g"), "");
+      },
+          w = function w(a) {
+        return 0 === a.indexOf(q);
+      },
+          x = function x() {
+        try {
+          var c = t in b && null !== b[t],
+              d = u("__" + Math.round(1e7 * Math.random()));return c && (o = b[t], o.setItem(d, ""), o.removeItem(d)), c;
+        } catch (b) {
+          return p.defaultToCookie && (t = "cookie"), a.$broadcast("LocalStorageModule.notification.error", b.message), !1;
+        }
+      },
+          y = x(),
+          z = function z(b, c, e) {
+        var f = J();try {
+          if (K(e), c = d(c) ? null : j(c), !y && p.defaultToCookie || "cookie" === p.storageType) return y || a.$broadcast("LocalStorageModule.notification.warning", "LOCAL_STORAGE_NOT_SUPPORTED"), s.setItem && a.$broadcast("LocalStorageModule.notification.setitem", { key: b, newvalue: c, storageType: "cookie" }), F(b, c);try {
+            o && o.setItem(u(b), c), s.setItem && a.$broadcast("LocalStorageModule.notification.setitem", { key: b, newvalue: c, storageType: p.storageType });
+          } catch (d) {
+            return a.$broadcast("LocalStorageModule.notification.error", d.message), F(b, c);
+          }return !0;
+        } finally {
+          K(f);
+        }
+      },
+          A = function A(b, c) {
+        var d = J();try {
+          if (K(c), !y && p.defaultToCookie || "cookie" === p.storageType) return y || a.$broadcast("LocalStorageModule.notification.warning", "LOCAL_STORAGE_NOT_SUPPORTED"), G(b);var e = o ? o.getItem(u(b)) : null;if (!e || "null" === e) return null;try {
+            return JSON.parse(e);
+          } catch (a) {
+            return e;
+          }
+        } finally {
+          K(d);
+        }
+      },
+          B = function B() {
+        var b = J();try {
+          var c = 0;arguments.length >= 1 && ("localStorage" === arguments[arguments.length - 1] || "sessionStorage" === arguments[arguments.length - 1]) && (c = 1, K(arguments[arguments.length - 1]));var d, e;for (d = 0; d < arguments.length - c; d++) {
+            if (e = arguments[d], !y && p.defaultToCookie || "cookie" === p.storageType) y || a.$broadcast("LocalStorageModule.notification.warning", "LOCAL_STORAGE_NOT_SUPPORTED"), s.removeItem && a.$broadcast("LocalStorageModule.notification.removeitem", { key: e, storageType: "cookie" }), H(e);else try {
+              o.removeItem(u(e)), s.removeItem && a.$broadcast("LocalStorageModule.notification.removeitem", { key: e, storageType: p.storageType });
+            } catch (b) {
+              a.$broadcast("LocalStorageModule.notification.error", b.message), H(e);
+            }
+          }
+        } finally {
+          K(b);
+        }
+      },
+          C = function C(b) {
+        var c = J();try {
+          if (K(b), !y) return a.$broadcast("LocalStorageModule.notification.warning", "LOCAL_STORAGE_NOT_SUPPORTED"), [];var d = q.length,
+              e = [];for (var f in o) {
+            if (f.substr(0, d) === q) try {
+              e.push(f.substr(d));
+            } catch (b) {
+              return a.$broadcast("LocalStorageModule.notification.error", b.Description), [];
+            }
+          }return e;
+        } finally {
+          K(c);
+        }
+      },
+          D = function D(b, c) {
+        var d = J();try {
+          K(c);var e = q ? new RegExp("^" + q) : new RegExp(),
+              f = b ? new RegExp(b) : new RegExp();if (!y && p.defaultToCookie || "cookie" === p.storageType) return y || a.$broadcast("LocalStorageModule.notification.warning", "LOCAL_STORAGE_NOT_SUPPORTED"), I();if (!y && !p.defaultToCookie) return !1;var g = q.length;for (var h in o) {
+            if (e.test(h) && f.test(h.substr(g))) try {
+              B(h.substr(g));
+            } catch (b) {
+              return a.$broadcast("LocalStorageModule.notification.error", b.message), I();
+            }
+          }return !0;
+        } finally {
+          K(d);
+        }
+      },
+          E = function () {
+        try {
+          return b.navigator.cookieEnabled || "cookie" in k && (k.cookie.length > 0 || (k.cookie = "test").indexOf.call(k.cookie, "test") > -1);
+        } catch (b) {
+          return a.$broadcast("LocalStorageModule.notification.error", b.message), !1;
+        }
+      }(),
+          F = function F(b, c, h, i) {
+        if (d(c)) return !1;if ((g(c) || f(c)) && (c = j(c)), !E) return a.$broadcast("LocalStorageModule.notification.error", "COOKIES_NOT_SUPPORTED"), !1;try {
+          var l = "",
+              m = new Date(),
+              n = "";if (null === c ? (m.setTime(m.getTime() + -864e5), l = "; expires=" + m.toGMTString(), c = "") : e(h) && 0 !== h ? (m.setTime(m.getTime() + 24 * h * 60 * 60 * 1e3), l = "; expires=" + m.toGMTString()) : 0 !== r.expiry && (m.setTime(m.getTime() + 24 * r.expiry * 60 * 60 * 1e3), l = "; expires=" + m.toGMTString()), b) {
+            var o = "; path=" + r.path;r.domain && (n = "; domain=" + r.domain), "boolean" == typeof i ? i === !0 && (n += "; secure") : r.secure === !0 && (n += "; secure"), k.cookie = u(b) + "=" + encodeURIComponent(c) + l + o + n;
+          }
+        } catch (b) {
+          return a.$broadcast("LocalStorageModule.notification.error", b.message), !1;
+        }return !0;
+      },
+          G = function G(b) {
+        if (!E) return a.$broadcast("LocalStorageModule.notification.error", "COOKIES_NOT_SUPPORTED"), !1;for (var c = k.cookie && k.cookie.split(";") || [], d = 0; d < c.length; d++) {
+          for (var e = c[d]; " " === e.charAt(0);) {
+            e = e.substring(1, e.length);
+          }if (0 === e.indexOf(u(b) + "=")) {
+            var f = decodeURIComponent(e.substring(q.length + b.length + 1, e.length));try {
+              var g = JSON.parse(f);return "number" == typeof g ? f : g;
+            } catch (a) {
+              return f;
+            }
+          }
+        }return null;
+      },
+          H = function H(a) {
+        F(a, null);
+      },
+          I = function I() {
+        for (var a = null, b = q.length, c = k.cookie.split(";"), d = 0; d < c.length; d++) {
+          for (a = c[d]; " " === a.charAt(0);) {
+            a = a.substring(1, a.length);
+          }var e = a.substring(b, a.indexOf("="));H(e);
+        }
+      },
+          J = function J() {
+        return t;
+      },
+          K = function K(a) {
+        return a && t !== a && (t = a, y = x()), y;
+      },
+          L = function L(a, b, d, e, g) {
+        e = e || b;var h = A(e, g);return null === h && c(d) ? h = d : f(h) && f(d) && (h = i(h, d)), l(b).assign(a, h), a.$watch(b, function (a) {
+          z(e, a, g);
+        }, f(a[b]));
+      };y && (b.addEventListener ? (b.addEventListener("storage", n, !1), a.$on("$destroy", function () {
+        b.removeEventListener("storage", n);
+      })) : b.attachEvent && (b.attachEvent("onstorage", n), a.$on("$destroy", function () {
+        b.detachEvent("onstorage", n);
+      })));var M = function M(a) {
+        var c = J();try {
+          K(a);for (var d = 0, e = b[t], f = 0; f < e.length; f++) {
+            0 === e.key(f).indexOf(q) && d++;
+          }return d;
+        } finally {
+          K(c);
+        }
+      },
+          N = function N(a) {
+        q = a;
+      };return { isSupported: y, getStorageType: J, setStorageType: K, setPrefix: N, set: z, add: z, get: A, keys: C, remove: B, clearAll: D, bind: L, deriveKey: u, underiveKey: v, length: M, defaultToCookie: this.defaultToCookie, cookie: { isSupported: E, set: F, add: F, get: G, remove: H, clearAll: I } };
+    }];
+  });
+}(window, window.angular);
+//# sourceMappingURL=angular-local-storage.min.js.map
+"use strict";
+
+// create the module and  name it scotchApp
+app.controller('mainController', ["$scope", "$http", "localStorageService", function ($scope, $http, $storaged) {
 	$scope.baseUrl = getMarvelUrl('');
 	$scope.charactersUrl = getMarvelUrl('characters');
 	$scope.comicsUrl = getMarvelUrl('comics');
 	$scope.posts = [];
 	$scope.hash = getHash();
-	$scope.favourites = [];
 
 	$http.get($scope.charactersUrl).success(function (data) {
 		//console.log(data.data.results);
@@ -267,26 +449,57 @@ app.controller('mainController', ["$scope", "$http", function ($scope, $http) {
 		console.log(err);
 	});
 
+	if ($storaged.get("favourites-list")) {
+		$scope.favourites = $storaged.get("favourites-list");
+	} else {
+		$scope.favourites = [];
+	}
+
+	$scope.$watchCollection('favourites', function (newValue, oldValue) {
+		$storaged.set("favourites-list", $scope.favourites);
+	});
 	$scope.addFavourite = function ($resourceURI) {
+		$resourceURI = $resourceURI.replace('http', 'https');
 		$resourceURI = $resourceURI + getHash();
+		console.log($resourceURI);
 		var $nowComic;
+
 		$http.get($resourceURI).success(function (data) {
 			//console.log(data.data.results);
 			$nowComic = data.data.results[0];
+
 			var found = $scope.favourites.some(function (el) {
 				return el.the_id === $nowComic.id;
 			});
-			if (!found) {
-				$scope.favourites.push({
-					the_id: $nowComic.id,
-					title: $nowComic.title,
-					thumbnail: $nowComic.thumbnail.path + '.' + $nowComic.thumbnail.extension
-				});
+			if ($scope.favourites.length < 3) {
+				if (!found) {
+					$scope.favourites.push({
+						the_id: $nowComic.id,
+						title: $nowComic.title,
+						thumbnail: $nowComic.thumbnail.path + '.' + $nowComic.thumbnail.extension
+					});
+				} else {
+					alert("You can't add the same comic more than 1 time");
+				}
+			} else {
+				alert("You can't add more than 3 comics");
 			}
-			console.log($scope.favourites);
 		}).error(function (err) {
 			console.log("error" + err);
 		});
 	};
+
+	$scope.deleteFavourite = function ($the_id) {
+		$scope.favourites.splice(findWithAttr($scope.favourites, 'the_id', $the_id), 1);
+	};
 }]);
+
+function findWithAttr(array, attr, value) {
+	for (var i = 0; i < array.length; i += 1) {
+		if (array[i][attr] === value) {
+			return i;
+		}
+	}
+	return -1;
+}
 //# sourceMappingURL=final.js.map
