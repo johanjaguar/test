@@ -218,11 +218,21 @@ function getHash() {
 
 function getMarvelUrl(complement) {
 
-	var url = "http://gateway.marvel.com/v1/public/";
+	var url = "https://gateway.marvel.com/v1/public/";
 	url = url + complement + getHash();
-
 	return url;
 };
+'use strict';
+
+function checkarray($arreglo, $valor) {
+  var ID = document.getElementById('input2').value;
+  var i = myArr.indexOf(ID);
+  if (i > -1) {
+    document.getElementById('message').value = 'Exist';
+  } else {
+    document.getElementById('message').value = 'Does not exist';
+  }
+}
 "use strict";
 
 /*var url = getMarvelUrl( 'characters') ;
@@ -248,11 +258,35 @@ app.controller('mainController', ["$scope", "$http", function ($scope, $http) {
 	$scope.comicsUrl = getMarvelUrl('comics');
 	$scope.posts = [];
 	$scope.hash = getHash();
+	$scope.favourites = [];
+
 	$http.get($scope.charactersUrl).success(function (data) {
-		console.log(data);
+		//console.log(data.data.results);
 		$scope.posts = data.data.results;
 	}).error(function (err) {
 		console.log(err);
 	});
+
+	$scope.addFavourite = function ($resourceURI) {
+		$resourceURI = $resourceURI + getHash();
+		var $nowComic;
+		$http.get($resourceURI).success(function (data) {
+			//console.log(data.data.results);
+			$nowComic = data.data.results[0];
+			var found = $scope.favourites.some(function (el) {
+				return el.the_id === $nowComic.id;
+			});
+			if (!found) {
+				$scope.favourites.push({
+					the_id: $nowComic.id,
+					title: $nowComic.title,
+					thumbnail: $nowComic.thumbnail.path + '.' + $nowComic.thumbnail.extension
+				});
+			}
+			console.log($scope.favourites);
+		}).error(function (err) {
+			console.log("error" + err);
+		});
+	};
 }]);
 //# sourceMappingURL=final.js.map
