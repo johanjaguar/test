@@ -1,6 +1,43 @@
-.favourites-title {
-  &::before {
-    background: url('../images-op/favourites.png') no-repeat;
-    padding-right: 10px;
-  }
+.favourites{
+	&-title {
+	  &::before {
+	    background: url('../images-op/favourites.png') no-repeat;
+	    padding-right: 10px;
+	  }
+	}
+	&-list{
+		padding: 0 15%;
+	}
+
+}
+
+.favourite{
+	display: block;
+	list-style: none;
+	margin: 0 0 60px 0;
+	position: relative;
+
+	&-thumbnail-portrait {
+		overflow: hidden; 
+	}
+
+	&-thumbnail {
+		height: auto;
+		max-width: 100%;
+	}
+
+	&-delete{
+		position: absolute;
+		top: -15px;
+		right: -15px;
+	}
+
+	&-title{
+		@include font-size(18);
+		color: $color-letra-h2;
+		font-family: $fuente-open-sans;
+		font-weight: bolder;	
+		text-align: center;
+		margin: 0;
+	}
 }

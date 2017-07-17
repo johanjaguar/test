@@ -211,10 +211,52 @@ h2::before {
   width: 50%;
 }
 
-/* line 2, src/scss/components/_favourites.scss */
+/* line 3, src/scss/components/_favourites.scss */
 .favourites-title::before {
   background: url("../images-op/favourites.png") no-repeat;
   padding-right: 10px;
+}
+
+/* line 8, src/scss/components/_favourites.scss */
+.favourites-list {
+  padding: 0 15%;
+}
+
+/* line 14, src/scss/components/_favourites.scss */
+.favourite {
+  display: block;
+  list-style: none;
+  margin: 0 0 60px 0;
+  position: relative;
+}
+
+/* line 20, src/scss/components/_favourites.scss */
+.favourite-thumbnail-portrait {
+  overflow: hidden;
+}
+
+/* line 24, src/scss/components/_favourites.scss */
+.favourite-thumbnail {
+  height: auto;
+  max-width: 100%;
+}
+
+/* line 29, src/scss/components/_favourites.scss */
+.favourite-delete {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+}
+
+/* line 35, src/scss/components/_favourites.scss */
+.favourite-title {
+  font-size: 1.8rem;
+  font-size: 18px;
+  color: #3b3130;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bolder;
+  text-align: center;
+  margin: 0;
 }
 
 /* line 11, src/scss/style.scss */
