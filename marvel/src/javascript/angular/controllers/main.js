@@ -17,6 +17,7 @@ app.controller('mainController', ["$scope", "$http", function( $scope , $http ) 
 		})
 
 	$scope.addFavourite = function( $resourceURI ) {
+		$resourceURI = $resourceURI.replace('http', 'https');
 		$resourceURI = $resourceURI + getHash(); 
 		var $nowComic;
 		$http.get( $resourceURI )

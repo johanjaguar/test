@@ -222,17 +222,6 @@ function getMarvelUrl(complement) {
 	url = url + complement + getHash();
 	return url;
 };
-'use strict';
-
-function checkarray($arreglo, $valor) {
-  var ID = document.getElementById('input2').value;
-  var i = myArr.indexOf(ID);
-  if (i > -1) {
-    document.getElementById('message').value = 'Exist';
-  } else {
-    document.getElementById('message').value = 'Does not exist';
-  }
-}
 "use strict";
 
 /*var url = getMarvelUrl( 'characters') ;
@@ -268,6 +257,7 @@ app.controller('mainController', ["$scope", "$http", function ($scope, $http) {
 	});
 
 	$scope.addFavourite = function ($resourceURI) {
+		$resourceURI = $resourceURI.replace('http', 'https');
 		$resourceURI = $resourceURI + getHash();
 		var $nowComic;
 		$http.get($resourceURI).success(function (data) {
