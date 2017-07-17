@@ -200,6 +200,7 @@ h2::before {
 
 /* line 83, src/scss/components/_characters.scss */
 .character-comic-list li {
+  cursor: pointer;
   font-size: 1.3rem;
   font-size: 13px;
   box-sizing: border-box;
@@ -246,9 +247,10 @@ h2::before {
   position: absolute;
   top: -15px;
   right: -15px;
+  cursor: pointer;
 }
 
-/* line 35, src/scss/components/_favourites.scss */
+/* line 36, src/scss/components/_favourites.scss */
 .favourite-title {
   font-size: 1.8rem;
   font-size: 18px;
