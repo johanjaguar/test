@@ -175,7 +175,7 @@ h2::before {
   overflow: hidden;
   position: relative;
   transform: translate(-20px, -20px);
-  width: 40%;
+  width: 200px;
 }
 
 /* line 30, src/scss/components/_characters.scss */
