@@ -23,17 +23,19 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 		})
  
 	$scope.searchCharacter = function( character ){
-		var specification = 'characters'
-		var complement = '&nameStartsWith=' + character;
-		$scope.charactersUrl = getMarvelUrl( specification, 10, $scope.currentPage ) + complement;
-		console.log( $scope.charactersUrl );
-		$http.get( $scope.charactersUrl )
-		.success(function(data){
-			$scope.posts = data.data.results;
-		})
-		.error(function(err){
-			console.log(err);
-		})
+		var specification = 'characters';
+		if (character.length > 3 ){
+			var complement = '&nameStartsWith=' + character;
+			$scope.charactersUrl = getMarvelUrl( specification, 10, $scope.currentPage ) + complement;
+			$http.get( $scope.charactersUrl )
+			.success(function(data){
+				$scope.posts = data.data.results;
+			})
+			.error(function(err){
+				console.log(err);
+			})
+		}
+		
 	}
 
 	$scope.moreResults = function( specification = 'characters', limit = 10, n = 1){
