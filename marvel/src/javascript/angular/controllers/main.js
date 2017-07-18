@@ -1,12 +1,50 @@
 // create the module and  name it scotchApp
 app.controller('mainController', ["$scope", "$http", "localStorageService", function( $scope , $http, $storaged ) {
-	$scope.baseUrl = getMarvelUrl(''); 
-	$scope.charactersUrl = getMarvelUrl('characters');
-	$scope.comicsUrl = getMarvelUrl('comics');
+	$scope.charactersUrl = getMarvelUrl('characters', 10, 0);
 	$scope.posts = [];
-	$scope.hash = getHash();
 	$scope.comicview = false;
+	$scope.total = 10;
+	$scope.pages = [];
+	$scope.currentPage = 0;
+	$scope.lastPage = 5;
+	$http.get( $scope.charactersUrl )
+		.success(function(data){
+			//console.log(data);
+			$scope.posts = data.data.results;
+			$scope.total = data.data.total;
+			for( var i= 0; i < ( $scope.total / 10) ; i++ ){
+				$scope.pages.push(i);
+			}
+		})
+		.error(function(err){
+			console.log(err);
+		})
+	
+	$scope.moreResults = function( specification = 'characters', limit = 10, n = 1){
+		var offset = 0;
+		$scope.currentPage = n;
+		$scope.lastPage = n + 5;
+		if( n > 1 ){
+			offset = ( limit * ( n -1 ) ) -1 ;
+		}
 
+		$scope.charactersUrl = getMarvelUrl( specification, limit, offset );
+		$http.get( $scope.charactersUrl )
+		.success(function(data){
+			//console.log(data);
+			$scope.posts = data.data.results;
+
+			console.log( $scope.posts );
+		})
+		.error(function(err){
+			console.log(err);
+		})
+	}
+
+
+
+	
+	
 	$scope.actualComic = {
 		title: 'No comic selected',
 		description: 'No comic selected',
@@ -15,32 +53,6 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 		price: 'No comic selected',
 		url: 'no comic selected'
 	};
-	
-	$http.get( $scope.charactersUrl )
-		.success(function(data){
-			//console.log(data.data.results);
-			$scope.posts = data.data.results;
-		})
-		.error(function(err){
-			console.log(err);
-		})
-	
-
-
-	if( $storaged.get("favourites-list")){
-		$scope.favourites = $storaged.get("favourites-list");
-	}
-	else{
-		$scope.favourites = [];
-	}
-
-
-
-	$scope.$watchCollection( 'favourites',
-		function( newValue, oldValue ){
-			$storaged.set( "favourites-list" , $scope.favourites );
-		}
-	);
 
 	$scope.changeActualComic = function( $resourceURI ){
 		$scope.comicview = !$scope.comicview;
@@ -78,6 +90,21 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 				})	
 		}
 	}
+	
+
+	if( $storaged.get("favourites-list")){
+		$scope.favourites = $storaged.get("favourites-list");
+	}
+	else{
+		$scope.favourites = [];
+	}
+
+	$scope.$watchCollection( 'favourites',
+		function( newValue, oldValue ){
+			$storaged.set( "favourites-list" , $scope.favourites );
+		}
+	);
+
 	$scope.addFavourite = function( $resourceURI ) {
 		$resourceURI = $resourceURI.replace('http', 'https');
 		$resourceURI = $resourceURI + getHash(); 

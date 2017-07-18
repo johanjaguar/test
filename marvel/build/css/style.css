@@ -416,12 +416,35 @@ h2::before {
   text-decoration: none;
 }
 
-/* line 12, src/scss/style.scss */
+/* line 2, src/scss/components/_pagination.scss */
+.pagination-list {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding-left: 0;
+}
+
+/* line 10, src/scss/components/_pagination.scss */
+.pagination-n {
+  font-size: 1.5rem;
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid #776d6c;
+  color: #776d6c;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bolder;
+  margin: 3px;
+  padding: 8px 14px;
+}
+
+/* line 13, src/scss/style.scss */
 .logo {
   width: 150px;
 }
 
-/* line 15, src/scss/style.scss */
+/* line 16, src/scss/style.scss */
 .logo img {
   height: auto;
   max-width: 100%;
