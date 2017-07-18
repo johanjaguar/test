@@ -23,7 +23,7 @@ i {
 
 .content-box {
   background: $color-fondo-content;
-  padding: 20px 10px;
+  padding: 20px;
   width: 75%;
 }
 
@@ -43,6 +43,10 @@ h2 {
   font-family: $fuente-open-sans;
   font-weight: bolder;
   padding-left: 20px;
+
+  &:hover {
+    color: $color-fondo-boton;
+  }
 
   &::before {
     background: url('../images-op/characters.png') no-repeat;
