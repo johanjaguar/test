@@ -16,11 +16,13 @@
         </div>
       </div>
       <aside class="aside-box">
-        <div class="favourites-box" ng-include="'partials/favourites.html'">
+        <div class="favourites" ng-include="'partials/favourites.html'">
         </div>
       </aside>
     </div> 
     <footer class="footer" ng-include=" 'partials/footer.html' "></footer>
+
+    <div class="comic-lightbox" ng-include=" 'partials/comic.html' " ng-show="comicview"></div>
     <script src="build/js/final.js"></script>
   </body>
 </html>
