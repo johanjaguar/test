@@ -174,12 +174,13 @@ h2::before {
 
 /* line 30, src/scss/components/_characters.scss */
 .character-thumbnail {
-  height: auto;
+  height: 200px;
   max-width: 100%;
   min-height: 100%;
+  width: 200px;
 }
 
-/* line 36, src/scss/components/_characters.scss */
+/* line 37, src/scss/components/_characters.scss */
 .character-main-info {
   box-sizing: border-box;
   float: right;
@@ -187,7 +188,7 @@ h2::before {
   width: 60%;
 }
 
-/* line 43, src/scss/components/_characters.scss */
+/* line 44, src/scss/components/_characters.scss */
 .character-name {
   font-size: 1.8rem;
   font-size: 18px;
@@ -198,7 +199,7 @@ h2::before {
   text-transform: uppercase;
 }
 
-/* line 52, src/scss/components/_characters.scss */
+/* line 53, src/scss/components/_characters.scss */
 .character-description {
   font-size: 1.3rem;
   font-size: 13px;
@@ -208,7 +209,7 @@ h2::before {
   margin-bottom: 20px;
 }
 
-/* line 60, src/scss/components/_characters.scss */
+/* line 61, src/scss/components/_characters.scss */
 .character-view-more {
   font-size: 1.3rem;
   font-size: 13px;
@@ -220,7 +221,7 @@ h2::before {
   text-decoration: none;
 }
 
-/* line 70, src/scss/components/_characters.scss */
+/* line 71, src/scss/components/_characters.scss */
 .character-comics-title {
   font-size: 1.8rem;
   font-size: 18px;
@@ -231,13 +232,13 @@ h2::before {
   text-transform: capitalize;
 }
 
-/* line 79, src/scss/components/_characters.scss */
+/* line 80, src/scss/components/_characters.scss */
 .character-comic-list {
   list-style: none;
   padding-left: 20px;
 }
 
-/* line 83, src/scss/components/_characters.scss */
+/* line 84, src/scss/components/_characters.scss */
 .character-comic-list li {
   font-size: 1.3rem;
   font-size: 13px;

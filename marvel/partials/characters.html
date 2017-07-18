@@ -3,7 +3,7 @@
   <li ng-repeat="post in posts " class="character">
     <div class="row">
       <div class="character-thumbnail-portrait">
-        <img class="character-thumbnail" src="{{post.thumbnail.path + '.' + post.thumbnail.extension}}"/>  
+        <div class="character-thumbnail" style="background: url('{{post.thumbnail.path + '.' + post.thumbnail.extension}}'); background-size: cover"></div>  
       </div>
       <div class="character-main-info">
         <h3 class="character-name">{{post.name}}</h3>  
