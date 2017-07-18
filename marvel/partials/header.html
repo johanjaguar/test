@@ -1,1 +1,8 @@
-<div class="logo"><img src="build/images-op/logo.png"/></div>
+<div class="header-logo">
+	<img src="build/images-op/logo.png"/>
+</div>
+<div class="header-busqueda-box">
+	<form class="header-busqueda-form">
+		<input class="header-busqueda-input" type="text" ng-model="currentCharacter" ng-keyup="searchCharacter( currentCharacter )" placeholder="Search character . . ."/>
+	</form>
+</div>

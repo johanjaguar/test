@@ -1,4 +1,40 @@
 .header {
   background: $color-fondo-header;
+  display: flex;
   padding: 12px 30px;
+
+  &-logo {
+    width: 150px;
+
+    img {
+      height: auto;
+      max-width: 100%;
+    }
+  }
+
+  &-busqueda {
+    &-box {
+      width: 65%;
+    }
+
+    &-form {
+      align-items: center;
+      display: flex;
+      justify-content: flex-end;
+      text-align: right;
+    }
+
+    &-input {
+      @include font-size(24);
+      border-radius: 5px;
+      box-sizing: border-box;
+      color: $color-letra-p;
+      font-family: $fuente-quicksand;
+      height: 50px;
+      margin: 10px 0;
+      padding: 10px 20px;
+      width: 650px;
+    }
+  }
 }
+
