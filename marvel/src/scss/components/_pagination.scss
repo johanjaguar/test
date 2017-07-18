@@ -1,0 +1,21 @@
+.pagination {
+  &-list {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-left: 0;
+  }
+
+  &-n {
+    @include font-size(15);
+    background: $color-fondo-comic-item;
+    border: 1px solid $color-letra-p;
+    color: $color-letra-p;
+    cursor: pointer;
+    font-family: $fuente-open-sans;
+    font-weight: bolder;
+    margin: 3px;
+    padding: 8px 14px;
+  }
+}

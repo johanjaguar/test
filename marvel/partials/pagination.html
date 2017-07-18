@@ -1,0 +1,7 @@
+<ul class="pagination-list">
+  <li ng-show ="lastPage > 5"  class="pagination-n" ng-click = " moreResults( 'characters', 10, currentPage -1 ) " >< </li>
+
+  <li class="pagination-n" ng-repeat = "page in  pages" ng-click = " moreResults( 'characters', 10, page ) " ng-show = "( page >= currentPage ) && ( page < lastPage ) " >{{page + 1}}</li>
+
+  <li ng-show ="currentPage < ( (total/10) -5 ) "  class="pagination-n" ng-click = " moreResults( 'characters', 10, currentPage + 1 ) " >></li>
+</ul>
