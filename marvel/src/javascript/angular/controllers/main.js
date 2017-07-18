@@ -7,6 +7,8 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 	$scope.pages = [];
 	$scope.currentPage = 0;
 	$scope.lastPage = 5;
+	$scope.currentCharacter = '';
+
 	$http.get( $scope.charactersUrl )
 		.success(function(data){
 			//console.log(data);
@@ -19,7 +21,21 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 		.error(function(err){
 			console.log(err);
 		})
-	
+ 
+	$scope.searchCharacter = function( character ){
+		var specification = 'characters'
+		var complement = '&nameStartsWith=' + character;
+		$scope.charactersUrl = getMarvelUrl( specification, 10, $scope.currentPage ) + complement;
+		console.log( $scope.charactersUrl );
+		$http.get( $scope.charactersUrl )
+		.success(function(data){
+			$scope.posts = data.data.results;
+		})
+		.error(function(err){
+			console.log(err);
+		})
+	}
+
 	$scope.moreResults = function( specification = 'characters', limit = 10, n = 1){
 		var offset = 0;
 		$scope.currentPage = n;
@@ -29,21 +45,15 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 		}
 
 		$scope.charactersUrl = getMarvelUrl( specification, limit, offset );
+		console.log( $scope.charactersUrl );
 		$http.get( $scope.charactersUrl )
 		.success(function(data){
-			//console.log(data);
 			$scope.posts = data.data.results;
-
-			console.log( $scope.posts );
 		})
 		.error(function(err){
 			console.log(err);
 		})
 	}
-
-
-
-	
 	
 	$scope.actualComic = {
 		title: 'No comic selected',
@@ -156,3 +166,8 @@ function findWithAttr(array, attr, value) {
 	}
 	return -1;
 }
+
+
+
+
+"https://gateway.marvel.com/v1/public/characters&nameStartsWith=s?apikey=c97a0c85709eb1a2a71994d9261ffbd6&ts=1500400096508&hash=c49937d48a40a83801daee05623fce49&limit=10&offset=0"
