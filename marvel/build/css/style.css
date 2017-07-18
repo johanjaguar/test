@@ -73,7 +73,7 @@ i {
 /* line 24, src/scss/components/_body.scss */
 .content-box {
   background: #eaeaea;
-  padding: 20px 10px;
+  padding: 20px;
   width: 75%;
 }
 
@@ -100,6 +100,11 @@ h2 {
 }
 
 /* line 47, src/scss/components/_body.scss */
+h2:hover {
+  color: #e81d22;
+}
+
+/* line 51, src/scss/components/_body.scss */
 h2::before {
   background: url("../images-op/characters.png") no-repeat;
   content: '';
@@ -109,7 +114,7 @@ h2::before {
   width: 40px;
 }
 
-/* line 57, src/scss/components/_body.scss */
+/* line 61, src/scss/components/_body.scss */
 .row {
   display: inline-block;
   width: 100%;
@@ -155,7 +160,7 @@ h2::before {
   border: 20px solid #eaeaea;
   box-sizing: border-box;
   list-style: none;
-  margin: 10px auto;
+  margin: 20px auto;
   padding-bottom: 20px;
   width: 50%;
 }
@@ -199,7 +204,12 @@ h2::before {
   text-transform: uppercase;
 }
 
-/* line 53, src/scss/components/_characters.scss */
+/* line 52, src/scss/components/_characters.scss */
+.character-name:hover {
+  color: #e81d22;
+}
+
+/* line 57, src/scss/components/_characters.scss */
 .character-description {
   font-size: 1.3rem;
   font-size: 13px;
@@ -209,7 +219,7 @@ h2::before {
   margin-bottom: 20px;
 }
 
-/* line 61, src/scss/components/_characters.scss */
+/* line 65, src/scss/components/_characters.scss */
 .character-view-more {
   font-size: 1.3rem;
   font-size: 13px;
@@ -221,7 +231,7 @@ h2::before {
   text-decoration: none;
 }
 
-/* line 71, src/scss/components/_characters.scss */
+/* line 75, src/scss/components/_characters.scss */
 .character-comics-title {
   font-size: 1.8rem;
   font-size: 18px;
@@ -232,13 +242,13 @@ h2::before {
   text-transform: capitalize;
 }
 
-/* line 80, src/scss/components/_characters.scss */
+/* line 84, src/scss/components/_characters.scss */
 .character-comic-list {
   list-style: none;
   padding-left: 20px;
 }
 
-/* line 84, src/scss/components/_characters.scss */
+/* line 88, src/scss/components/_characters.scss */
 .character-comic-list li {
   font-size: 1.3rem;
   font-size: 13px;
@@ -250,6 +260,11 @@ h2::before {
   line-height: 1.4;
   padding: 10px;
   width: 50%;
+}
+
+/* line 99, src/scss/components/_characters.scss */
+.character-comic-list li:hover {
+  color: #e81d22;
 }
 
 /* line 3, src/scss/components/_favourites.scss */
@@ -470,13 +485,19 @@ h2::before {
   font-size: 1.5rem;
   font-size: 15px;
   background: #fff;
-  border: 1px solid #776d6c;
+  border: 1px solid #e2e2e2;
   color: #776d6c;
   cursor: pointer;
   font-family: "Open Sans", sans-serif;
   font-weight: bolder;
   margin: 3px;
   padding: 8px 14px;
+}
+
+/* line 21, src/scss/components/_pagination.scss */
+.pagination-n:hover {
+  background: #e2e2e2;
+  color: #2b2525;
 }
 
 /* line 13, src/scss/style.scss */

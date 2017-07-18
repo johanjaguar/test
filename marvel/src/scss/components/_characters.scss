@@ -12,7 +12,7 @@
   border: 20px solid $color-fondo-content;
   box-sizing: border-box;
   list-style: none;
-  margin: 10px auto;
+  margin: 20px auto;
   padding-bottom: 20px;  
   width: 50%;
 
@@ -48,6 +48,10 @@
     font-weight: bolder;
     margin-top: -13px;
     text-transform: uppercase;
+
+    &:hover {
+      color: $color-fondo-boton;
+    }
   }
 
   &-description {
@@ -91,6 +95,10 @@
       line-height: 1.4;
       padding: 10px;
       width: 50%;
+
+      &:hover {
+        color: $color-fondo-boton;
+      }
     }
   }
 }
