@@ -441,6 +441,16 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 	$scope.comicsUrl = getMarvelUrl('comics');
 	$scope.posts = [];
 	$scope.hash = getHash();
+	$scope.comicview = false;
+
+	$scope.actualComic = {
+		title: 'No comic selected',
+		description: 'No comic selected',
+		URI: 'No comic selected',
+		thumbnail: 'No comic selected',
+		price: 'No comic selected',
+		url: 'no comic selected'
+	};
 
 	$http.get($scope.charactersUrl).success(function (data) {
 		//console.log(data.data.results);
@@ -458,11 +468,44 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 	$scope.$watchCollection('favourites', function (newValue, oldValue) {
 		$storaged.set("favourites-list", $scope.favourites);
 	});
+
+	$scope.changeActualComic = function ($resourceURI) {
+		$scope.comicview = !$scope.comicview;
+
+		if ($resourceURI === 'reset') {
+			$scope.actualComic.title = 'No comic selected';
+			$scope.actualComic.description = 'No comic selected';
+			$scope.actualComic.URI = 'No comic selected';
+			$scope.actualComic.thumbnail = 'No comic selected';
+			$scope.actualComic.price = 'No comic selected';
+			$scope.actualComic.url = 'No comic selected';
+		} else {
+			$resourceURI = $resourceURI.replace('http', 'https');
+			$resourceURI = $resourceURI + getHash();
+			console.log($resourceURI);
+			var $nowComic = {};
+
+			$http.get($resourceURI).success(function (data) {
+				$nowComic = data.data.results[0];
+				console.log($nowComic);
+				$scope.actualComic.title = $nowComic.title;
+				$scope.actualComic.description = $nowComic.description > 1 ? $nowComic.description : "This comic doesn't have a description";
+				$scope.actualComic.URI = $nowComic.resourceURI;
+				$scope.actualComic.thumbnail = $nowComic.thumbnail.path + '.' + $nowComic.thumbnail.extension;
+				$scope.actualComic.price = $nowComic.prices[0].price;
+				$scope.actualComic.url = $nowComic.urls[0].url;
+
+				console.log($scope.actualComic);
+			}).error(function (err) {
+				console.log("error" + err);
+			});
+		}
+	};
 	$scope.addFavourite = function ($resourceURI) {
 		$resourceURI = $resourceURI.replace('http', 'https');
 		$resourceURI = $resourceURI + getHash();
 		console.log($resourceURI);
-		var $nowComic;
+		var $nowComic = {};
 
 		$http.get($resourceURI).success(function (data) {
 			//console.log(data.data.results);
@@ -484,6 +527,7 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 			} else {
 				alert("You can't add more than 3 comics");
 			}
+			$scope.changeActualComic('reset');
 		}).error(function (err) {
 			console.log("error" + err);
 		});

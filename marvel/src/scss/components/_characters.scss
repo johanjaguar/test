@@ -81,10 +81,10 @@
     padding-left: 20px;
 
     li {
-      cursor: pointer;
       @include font-size(13);
       box-sizing: border-box;
       color: $color-letra-p;
+      cursor: pointer;
       float: left;
       font-family: $fuente-quicksand;
       line-height: 1.4;

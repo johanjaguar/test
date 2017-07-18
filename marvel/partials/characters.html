@@ -15,7 +15,7 @@
       <h3 class="character-comics-title">Related comics</h3>
       <ul class="character-comic-list">
         <li ng-repeat="comic in post.comics.items">
-          <div ng-click="addFavourite( comic.resourceURI )">{{comic.name}}</div>
+          <div ng-click="changeActualComic( comic.resourceURI )">{{comic.name}}</div>
 
         </li>
       </ul>  
