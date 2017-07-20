@@ -15,7 +15,9 @@ gulp.task('scripts', function(){
     //'route.js',
     'angular/dist/angular-local-storage.js',
     'angular/services/factory-marvel.js',
-    'angular/controllers/main.js'
+    'angular/controllers/mainController.js',
+    'angular/controllers/searchCharacterController.js',
+    'angular/controllers/moreResultsController.js',
   ], {cwd: 'src/javascript'} )
     .pipe(sourcemaps.init())
     .pipe(babel({presets: ['babili']}))

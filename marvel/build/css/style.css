@@ -9,21 +9,22 @@
 
 /* line 6, src/scss/components/_header.scss */
 .header-logo {
+  cursor: pointer;
   width: 150px;
 }
 
-/* line 9, src/scss/components/_header.scss */
+/* line 10, src/scss/components/_header.scss */
 .header-logo img {
   height: auto;
   max-width: 100%;
 }
 
-/* line 16, src/scss/components/_header.scss */
+/* line 17, src/scss/components/_header.scss */
 .header-busqueda-box {
   width: 65%;
 }
 
-/* line 20, src/scss/components/_header.scss */
+/* line 21, src/scss/components/_header.scss */
 .header-busqueda-form {
   align-items: center;
   display: flex;
@@ -31,7 +32,7 @@
   text-align: right;
 }
 
-/* line 27, src/scss/components/_header.scss */
+/* line 28, src/scss/components/_header.scss */
 .header-busqueda-input {
   font-size: 2.4rem;
   font-size: 24px;
