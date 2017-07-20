@@ -1,49 +1,53 @@
-// create the module and  name it scotchApp
-app.controller('mainController', ["$scope", "$http", "localStorageService", function( $scope , $http, $storaged ) {
-	$scope.charactersUrl = getMarvelUrl('characters', 10, 0);
+app.controller('mainController', ["$scope", "$http", "localStorageService", "marvelFactory" , function( $scope , $http, $storaged, marvel ) {
+	$scope.config = {
+		complement: 'characters',
+		limit: 10,
+		name: '',
+		offset: 0,
+		order: 'name',
+		numberPages: 5
+	};
+
 	$scope.posts = [];
 	$scope.comicview = false;
 	$scope.total = 10;
 	$scope.pages = [];
 	$scope.currentPage = 0;
 	$scope.lastPage = 5;
-	$http.get( $scope.charactersUrl )
-		.success(function(data){
-			//console.log(data);
-			$scope.posts = data.data.results;
-			$scope.total = data.data.total;
-			for( var i= 0; i < ( $scope.total / 10) ; i++ ){
-				$scope.pages.push(i);
-			}
-		})
-		.error(function(err){
-			console.log(err);
-		})
 	
-	$scope.moreResults = function( specification = 'characters', limit = 10, n = 1){
+  //$scope.data = marvel.getData( $scope.config );
+  marvel.getData( $scope.config ).then( function(data){
+		$scope.total = data.total;
+		$scope.posts = data.posts;
+		$scope.pages = data.pages;
+	})
+	
+	$scope.searchCharacter = function( name ){
+		$scope.config.name = name;
+		marvel.getData( $scope.config ).then( function(data){
+			$scope.total = data.total;
+			$scope.posts = data.posts;
+			$scope.pages = data.pages;
+		});
+	}
+
+	$scope.moreResults = function( complement = 'characters', limit = 10, n = 1, name){
 		var offset = 0;
 		$scope.currentPage = n;
-		$scope.lastPage = n + 5;
+		$scope.lastPage = n + $scope.config.numberPages;
 		if( n > 1 ){
 			offset = ( limit * ( n -1 ) ) -1 ;
 		}
-
-		$scope.charactersUrl = getMarvelUrl( specification, limit, offset );
-		$http.get( $scope.charactersUrl )
-		.success(function(data){
-			//console.log(data);
-			$scope.posts = data.data.results;
-
-			console.log( $scope.posts );
-		})
-		.error(function(err){
-			console.log(err);
+		$scope.config.complement = name;
+		$scope.config.complement = complement;
+		$scope.config.limit = limit;
+		$scope.config.offset = offset;
+		marvel.getData( $scope.config ).then( function(data){
+			$scope.total = data.total;
+			$scope.posts = data.posts;
+			$scope.pages = data.pages;
 		})
 	}
-
-
-
-	
 	
 	$scope.actualComic = {
 		title: 'No comic selected',
@@ -69,13 +73,13 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 		else{
 			$resourceURI = $resourceURI.replace('http', 'https');
 			$resourceURI = $resourceURI + getHash(); 
-			console.log( $resourceURI );
+			//console.log( $resourceURI );
 			var $nowComic = {};
 
 			$http.get( $resourceURI )
 				.success(function(data){
 					$nowComic = data.data.results[0];
-					console.log( $nowComic );
+					//console.log( $nowComic );
 					$scope.actualComic.title = $nowComic.title;
 					$scope.actualComic.description = ( $nowComic.description > 1 ) ?  $nowComic.description : "This comic doesn't have a description";
 					$scope.actualComic.URI = $nowComic.resourceURI;
@@ -83,7 +87,7 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 					$scope.actualComic.price = $nowComic.prices[0].price;
 					$scope.actualComic.url = $nowComic.urls[0].url
 
-					console.log( $scope.actualComic );
+					//console.log( $scope.actualComic );
 				})
 				.error(function(err){
 					console.log("error" + err);
@@ -108,7 +112,7 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", func
 	$scope.addFavourite = function( $resourceURI ) {
 		$resourceURI = $resourceURI.replace('http', 'https');
 		$resourceURI = $resourceURI + getHash(); 
-		console.log( $resourceURI );
+		//console.log( $resourceURI );
 		var $nowComic = {};
 
 		$http.get( $resourceURI )
@@ -156,3 +160,7 @@ function findWithAttr(array, attr, value) {
 	}
 	return -1;
 }
+
+
+
+

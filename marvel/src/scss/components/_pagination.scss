@@ -10,12 +10,17 @@
   &-n {
     @include font-size(15);
     background: $color-fondo-comic-item;
-    border: 1px solid $color-letra-p;
+    border: 1px solid $color-fondo-aside;
     color: $color-letra-p;
     cursor: pointer;
     font-family: $fuente-open-sans;
     font-weight: bolder;
     margin: 3px;
     padding: 8px 14px;
+
+    &:hover {
+      background: $color-fondo-aside;
+      color: $color-fondo-header;
+    }
   }
 }
