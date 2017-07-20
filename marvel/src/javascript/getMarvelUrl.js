@@ -7,9 +7,20 @@ function getHash(){
 	return hash;
 }
 
-function getMarvelUrl ( complement, limit = 100, offset = 0 ){
-	
-	var url = "https://gateway.marvel.com/v1/public/";  
-	url = url + complement + getHash() + "&limit=" + limit + "&offset=" + offset;
-	return url; 
+function getMarvelUrl ( url ) {
+	var base = "https://gateway.marvel.com/v1/public/" + url.complement + getHash();  
+	if( url.limit != '' ) {
+		base += "&limit=" + url.limit;
+	}
+	if( url.offset != '' ) {
+		base += "&offset=" + url.offset;
+	}
+	if( url.order != '' ) {
+		base += "&orderBy=" + url.order;
+	}
+	if( url.name != '' ) {
+		base += "&nameStartsWith=" + url.name;
+	}
+	//console.log( base );
+	return base; 
 }; 
