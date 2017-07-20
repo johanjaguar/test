@@ -493,15 +493,9 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", "mar
 	$scope.currentPage = 0;
 	$scope.lastPage = 5;
 
-	//$scope.data = marvel.getData( $scope.config );
-	marvel.getData($scope.config).then(function (data) {
-		$scope.total = data.total;
-		$scope.posts = data.posts;
-		$scope.pages = data.pages;
-	});
-
-	$scope.searchCharacter = function (name) {
-		$scope.config.name = name;
+	//Private functions 
+	$scope.getPost = function (configuration) {
+		//$scope.data = marvel.getData( $scope.config );
 		marvel.getData($scope.config).then(function (data) {
 			$scope.total = data.total;
 			$scope.posts = data.posts;
@@ -509,37 +503,7 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", "mar
 		});
 	};
 
-	$scope.moreResults = function () {
-		var complement = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'characters';
-		var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
-		var n = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-		var name = arguments[3];
-
-		var offset = 0;
-		$scope.currentPage = n;
-		$scope.lastPage = n + $scope.config.numberPages;
-		if (n > 1) {
-			offset = limit * (n - 1) - 1;
-		}
-		$scope.config.complement = name;
-		$scope.config.complement = complement;
-		$scope.config.limit = limit;
-		$scope.config.offset = offset;
-		marvel.getData($scope.config).then(function (data) {
-			$scope.total = data.total;
-			$scope.posts = data.posts;
-			$scope.pages = data.pages;
-		});
-	};
-
-	$scope.actualComic = {
-		title: 'No comic selected',
-		description: 'No comic selected',
-		URI: 'No comic selected',
-		thumbnail: 'No comic selected',
-		price: 'No comic selected',
-		url: 'no comic selected'
-	};
+	$scope.getPost($scope.config);
 
 	$scope.changeActualComic = function ($resourceURI) {
 		$scope.comicview = !$scope.comicview;
@@ -583,6 +547,21 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", "mar
 	$scope.$watchCollection('favourites', function (newValue, oldValue) {
 		$storaged.set("favourites-list", $scope.favourites);
 	});
+
+	//Private functions 
+	$scope.changePost = function (value) {
+		$scope.posts = value;
+		console.log(value);
+	};
+
+	$scope.getPost = function (configuration) {
+		//$scope.data = marvel.getData( $scope.config );
+		marvel.getData($scope.config).then(function (data) {
+			$scope.total = data.total;
+			$scope.posts = data.posts;
+			$scope.pages = data.pages;
+		});
+	};
 
 	$scope.addFavourite = function ($resourceURI) {
 		$resourceURI = $resourceURI.replace('http', 'https');
@@ -629,4 +608,34 @@ function findWithAttr(array, attr, value) {
 	}
 	return -1;
 }
+"use strict";
+
+app.controller('searchCharacterController', ["$scope", function ($scope) {
+  $scope.searchCharacter = function (name) {
+    $scope.config.name = name;
+    $scope.getPost($scope.config);
+  };
+}]);
+'use strict';
+
+app.controller('moreResultsController', ["$scope", function ($scope) {
+  $scope.moreResults = function () {
+    var complement = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'characters';
+    var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
+    var n = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+    var name = arguments[3];
+
+    var offset = 0;
+    $scope.currentPage = n;
+    $scope.lastPage = n + $scope.config.numberPages;
+    if (n > 1) {
+      offset = limit * (n - 1) - 1;
+    }
+    $scope.config.complement = name;
+    $scope.config.complement = complement;
+    $scope.config.limit = limit;
+    $scope.config.offset = offset;
+    $scope.getPost($scope.config);
+  };
+}]);
 //# sourceMappingURL=final.js.map
