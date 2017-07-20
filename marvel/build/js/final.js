@@ -1,6 +1,632 @@
-"use strict";var MD5=function(e){function f(a,b){return a<<b|a>>>32-b}function g(a,b){var c,d,e,f,g;return e=2147483648&a,f=2147483648&b,c=1073741824&a,d=1073741824&b,g=(1073741823&a)+(1073741823&b),c&d?2147483648^g^e^f:c|d?1073741824&g?3221225472^g^e^f:1073741824^g^e^f:g^e^f}function h(a,b,c){return a&b|~a&c}function i(a,b,c){return a&c|b&~c}function j(a,b,c){return a^b^c}function l(a,b,c){return b^(a|~c)}function m(e,a,b,c,d,i,j){return e=g(e,g(g(h(a,b,c),d),j)),g(f(e,i),a)}function n(e,a,b,c,d,h,j){return e=g(e,g(g(i(a,b,c),d),j)),g(f(e,h),a)}function o(e,a,b,c,d,h,i){return e=g(e,g(g(j(a,b,c),d),i)),g(f(e,h),a)}function p(e,a,b,c,d,h,i){return e=g(e,g(g(l(a,b,c),d),i)),g(f(e,h),a)}function q(a){for(var b,c=a.length,d=c+8,e=16*((d-d%64)/64+1),f=Array(e-1),g=0,h=0;h<c;)b=(h-h%4)/4,g=8*(h%4),f[b]|=a.charCodeAt(h)<<g,h++;return b=(h-h%4)/4,g=8*(h%4),f[b]|=128<<g,f[e-2]=c<<3,f[e-1]=c>>>29,f}function r(a){var b,c,d="",e="";for(c=0;3>=c;c++)b=255&a>>>8*c,e="0"+b.toString(16),d+=e.substr(e.length-2,2);return d}function s(a){var b=String.fromCharCode;a=a.replace(/\r\n/g,"\n");for(var d,c="",e=0;e<a.length;e++)d=a.charCodeAt(e),128>d?c+=b(d):127<d&&2048>d?(c+=b(192|d>>6),c+=b(128|63&d)):(c+=b(224|d>>12),c+=b(128|63&d>>6),c+=b(128|63&d));return c}var t,k,u,v,w,y,a,b,c,d=[],x=7,z=12,A=17,B=22,C=5,D=9,E=14,F=20,G=4,H=11,I=16,J=23,K=6,L=10,M=15,N=21;for(e=s(e),d=q(e),y=1732584193,a=4023233417,b=2562383102,c=271733878,t=0;t<d.length;t+=16)k=y,u=a,v=b,w=c,y=m(y,a,b,c,d[t+0],x,3614090360),c=m(c,y,a,b,d[t+1],z,3905402710),b=m(b,c,y,a,d[t+2],A,606105819),a=m(a,b,c,y,d[t+3],B,3250441966),y=m(y,a,b,c,d[t+4],x,4118548399),c=m(c,y,a,b,d[t+5],z,1200080426),b=m(b,c,y,a,d[t+6],A,2821735955),a=m(a,b,c,y,d[t+7],B,4249261313),y=m(y,a,b,c,d[t+8],x,1770035416),c=m(c,y,a,b,d[t+9],z,2336552879),b=m(b,c,y,a,d[t+10],A,4294925233),a=m(a,b,c,y,d[t+11],B,2304563134),y=m(y,a,b,c,d[t+12],x,1804603682),c=m(c,y,a,b,d[t+13],z,4254626195),b=m(b,c,y,a,d[t+14],A,2792965006),a=m(a,b,c,y,d[t+15],B,1236535329),y=n(y,a,b,c,d[t+1],C,4129170786),c=n(c,y,a,b,d[t+6],D,3225465664),b=n(b,c,y,a,d[t+11],E,643717713),a=n(a,b,c,y,d[t+0],F,3921069994),y=n(y,a,b,c,d[t+5],C,3593408605),c=n(c,y,a,b,d[t+10],D,38016083),b=n(b,c,y,a,d[t+15],E,3634488961),a=n(a,b,c,y,d[t+4],F,3889429448),y=n(y,a,b,c,d[t+9],C,568446438),c=n(c,y,a,b,d[t+14],D,3275163606),b=n(b,c,y,a,d[t+3],E,4107603335),a=n(a,b,c,y,d[t+8],F,1163531501),y=n(y,a,b,c,d[t+13],C,2850285829),c=n(c,y,a,b,d[t+2],D,4243563512),b=n(b,c,y,a,d[t+7],E,1735328473),a=n(a,b,c,y,d[t+12],F,2368359562),y=o(y,a,b,c,d[t+5],G,4294588738),c=o(c,y,a,b,d[t+8],H,2272392833),b=o(b,c,y,a,d[t+11],I,1839030562),a=o(a,b,c,y,d[t+14],J,4259657740),y=o(y,a,b,c,d[t+1],G,2763975236),c=o(c,y,a,b,d[t+4],H,1272893353),b=o(b,c,y,a,d[t+7],I,4139469664),a=o(a,b,c,y,d[t+10],J,3200236656),y=o(y,a,b,c,d[t+13],G,681279174),c=o(c,y,a,b,d[t+0],H,3936430074),b=o(b,c,y,a,d[t+3],I,3572445317),a=o(a,b,c,y,d[t+6],J,76029189),y=o(y,a,b,c,d[t+9],G,3654602809),c=o(c,y,a,b,d[t+12],H,3873151461),b=o(b,c,y,a,d[t+15],I,530742520),a=o(a,b,c,y,d[t+2],J,3299628645),y=p(y,a,b,c,d[t+0],K,4096336452),c=p(c,y,a,b,d[t+7],L,1126891415),b=p(b,c,y,a,d[t+14],M,2878612391),a=p(a,b,c,y,d[t+5],N,4237533241),y=p(y,a,b,c,d[t+12],K,1700485571),c=p(c,y,a,b,d[t+3],L,2399980690),b=p(b,c,y,a,d[t+10],M,4293915773),a=p(a,b,c,y,d[t+1],N,2240044497),y=p(y,a,b,c,d[t+8],K,1873313359),c=p(c,y,a,b,d[t+15],L,4264355552),b=p(b,c,y,a,d[t+6],M,2734768916),a=p(a,b,c,y,d[t+13],N,1309151649),y=p(y,a,b,c,d[t+4],K,4149444226),c=p(c,y,a,b,d[t+11],L,3174756917),b=p(b,c,y,a,d[t+2],M,718787259),a=p(a,b,c,y,d[t+9],N,3951481745),y=g(y,k),a=g(a,u),b=g(b,v),c=g(c,w);var O=r(y)+r(a)+r(b)+r(c);return O.toLowerCase()};
-"use strict";function getHash(){var a="c97a0c85709eb1a2a71994d9261ffbd6",b=new Date().getTime(),c=MD5(b+"ba63ece6936566ddc4bf1219499fd705b8e32934"+a);return c="?apikey="+a+"&ts="+b+"&hash="+c,c}function getMarvelUrl(a){var b=1<arguments.length&&void 0!==arguments[1]?arguments[1]:100,c=2<arguments.length&&void 0!==arguments[2]?arguments[2]:0,d="https://gateway.marvel.com/v1/public/";return d=d+a+getHash()+"&limit="+b+"&offset="+c,d}
-"use strict";var app=angular.module("marvelApi",["LocalStorageModule"]);
-"use strict";!function(k,a){var m=a.isDefined,q=a.isUndefined,d=a.isNumber,p=a.isObject,e=a.isArray,f=a.isString,c=a.extend,g=a.toJson;a.module("LocalStorageModule",[]).provider("localStorageService",function(){this.prefix="ls",this.storageType="localStorage",this.cookie={expiry:30,path:"/",secure:!1},this.defaultToCookie=!0,this.notify={setItem:!0,removeItem:!1},this.setPrefix=function(b){return this.prefix=b,this},this.setStorageType=function(b){return this.storageType=b,this},this.setDefaultToCookie=function(b){return this.defaultToCookie=!!b,this},this.setStorageCookie=function(d,a,b){return this.cookie.expiry=d,this.cookie.path=a,this.cookie.secure=b,this},this.setStorageCookieDomain=function(b){return this.cookie.domain=b,this},this.setNotify=function(c,d){return this.notify={setItem:c,removeItem:d},this},this.$get=["$rootScope","$window","$document","$parse","$timeout",function(j,a,h,i,b){function k(e){if(e||(e=a.event),r.setItem&&f(e.key)&&L(e.key)){var c=D(e.key);b(function(){j.$broadcast("LocalStorageModule.notification.changed",{key:c,newvalue:e.newValue,storageType:n.storageType})})}}var l,n=this,o=n.prefix,C=n.cookie,r=n.notify,s=n.storageType;h?h[0]&&(h=h[0]):h=document,"."!==o.substr(-1)&&(o=o?o+".":"");var t=function(b){return o+b},D=function(b){return b.replace(new RegExp("^"+o,"g"),"")},L=function(b){return 0===b.indexOf(o)},w=function(){try{var b=s in a&&null!==a[s],c=t("__"+Math.round(1e7*Math.random()));return b&&(l=a[s],l.setItem(c,""),l.removeItem(c)),b}catch(a){return n.defaultToCookie&&(s="cookie"),j.$broadcast("LocalStorageModule.notification.error",a.message),!1}},x=w(),M=function(a,h,d){var e=U();try{if(V(d),h=q(h)?null:g(h),!x&&n.defaultToCookie||"cookie"===n.storageType)return x||j.$broadcast("LocalStorageModule.notification.warning","LOCAL_STORAGE_NOT_SUPPORTED"),r.setItem&&j.$broadcast("LocalStorageModule.notification.setitem",{key:a,newvalue:h,storageType:"cookie"}),Q(a,h);try{l&&l.setItem(t(a),h),r.setItem&&j.$broadcast("LocalStorageModule.notification.setitem",{key:a,newvalue:h,storageType:n.storageType})}catch(b){return j.$broadcast("LocalStorageModule.notification.error",b.message),Q(a,h)}return!0}finally{V(e)}},N=function(a,b){var c=U();try{if(V(b),!x&&n.defaultToCookie||"cookie"===n.storageType)return x||j.$broadcast("LocalStorageModule.notification.warning","LOCAL_STORAGE_NOT_SUPPORTED"),R(a);var d=l?l.getItem(t(a)):null;if(!d||"null"===d)return null;try{return JSON.parse(d)}catch(b){return d}}finally{V(c)}},O=function(){var a=U();try{var b=0;1<=arguments.length&&("localStorage"===arguments[arguments.length-1]||"sessionStorage"===arguments[arguments.length-1])&&(b=1,V(arguments[arguments.length-1]));var c,d;for(c=0;c<arguments.length-b;c++)if(d=arguments[c],!x&&n.defaultToCookie||"cookie"===n.storageType)x||j.$broadcast("LocalStorageModule.notification.warning","LOCAL_STORAGE_NOT_SUPPORTED"),r.removeItem&&j.$broadcast("LocalStorageModule.notification.removeitem",{key:d,storageType:"cookie"}),S(d);else try{l.removeItem(t(d)),r.removeItem&&j.$broadcast("LocalStorageModule.notification.removeitem",{key:d,storageType:n.storageType})}catch(a){j.$broadcast("LocalStorageModule.notification.error",a.message),S(d)}}finally{V(a)}},P=function(){try{return a.navigator.cookieEnabled||"cookie"in h&&(0<h.cookie.length||-1<(h.cookie="test").indexOf.call(h.cookie,"test"))}catch(a){return j.$broadcast("LocalStorageModule.notification.error",a.message),!1}}(),Q=function(a,b,c,f){if(q(b))return!1;if((e(b)||p(b))&&(b=g(b)),!P)return j.$broadcast("LocalStorageModule.notification.error","COOKIES_NOT_SUPPORTED"),!1;try{var k="",l=new Date,m="";if(null===b?(l.setTime(l.getTime()+-864e5),k="; expires="+l.toGMTString(),b=""):d(c)&&0!==c?(l.setTime(l.getTime()+1e3*(60*(60*(24*c)))),k="; expires="+l.toGMTString()):0!==C.expiry&&(l.setTime(l.getTime()+1e3*(60*(60*(24*C.expiry)))),k="; expires="+l.toGMTString()),a){var n="; path="+C.path;C.domain&&(m="; domain="+C.domain),"boolean"==typeof f?!0===f&&(m+="; secure"):!0===C.secure&&(m+="; secure"),h.cookie=t(a)+"="+encodeURIComponent(b)+k+n+m}}catch(a){return j.$broadcast("LocalStorageModule.notification.error",a.message),!1}return!0},R=function(a){if(!P)return j.$broadcast("LocalStorageModule.notification.error","COOKIES_NOT_SUPPORTED"),!1;for(var b=h.cookie&&h.cookie.split(";")||[],c=0;c<b.length;c++){for(var d=b[c];" "===d.charAt(0);)d=d.substring(1,d.length);if(0===d.indexOf(t(a)+"=")){var e=decodeURIComponent(d.substring(o.length+a.length+1,d.length));try{var f=JSON.parse(e);return"number"==typeof f?e:f}catch(b){return e}}}return null},S=function(b){Q(b,null)},T=function(){for(var f=null,a=o.length,b=h.cookie.split(";"),c=0;c<b.length;c++){for(f=b[c];" "===f.charAt(0);)f=f.substring(1,f.length);var d=f.substring(a,f.indexOf("="));S(d)}},U=function(){return s},V=function(b){return b&&s!==b&&(s=b,x=w()),x};x&&(a.addEventListener?(a.addEventListener("storage",k,!1),j.$on("$destroy",function(){a.removeEventListener("storage",k)})):a.attachEvent&&(a.attachEvent("onstorage",k),j.$on("$destroy",function(){a.detachEvent("onstorage",k)})));return{isSupported:x,getStorageType:U,setStorageType:V,setPrefix:function N(b){o=b},set:M,add:M,get:N,keys:function C(a){var b=U();try{if(V(a),!x)return j.$broadcast("LocalStorageModule.notification.warning","LOCAL_STORAGE_NOT_SUPPORTED"),[];var c=o.length,d=[];for(var e in l)if(e.substr(0,c)===o)try{d.push(e.substr(c))}catch(a){return j.$broadcast("LocalStorageModule.notification.error",a.Description),[]}return d}finally{V(b)}},remove:O,clearAll:function D(a,b){var c=U();try{V(b);var d=o?new RegExp("^"+o):/(?:)/,e=a?new RegExp(a):/(?:)/;if(!x&&n.defaultToCookie||"cookie"===n.storageType)return x||j.$broadcast("LocalStorageModule.notification.warning","LOCAL_STORAGE_NOT_SUPPORTED"),T();if(!x&&!n.defaultToCookie)return!1;var f=o.length;for(var g in l)if(d.test(g)&&e.test(g.substr(f)))try{O(g.substr(f))}catch(a){return j.$broadcast("LocalStorageModule.notification.error",a.message),T()}return!0}finally{V(c)}},bind:function L(f,a,b,d,e){d=d||a;var g=N(d,e);return null===g&&m(b)?g=b:p(g)&&p(b)&&(g=c(g,b)),i(a).assign(f,g),f.$watch(a,function(b){M(d,b,e)},p(f[a]))},deriveKey:t,underiveKey:D,length:function M(b){var g=U();try{V(b);for(var c=0,d=a[s],e=0;e<d.length;e++)0===d.key(e).indexOf(o)&&c++;return c}finally{V(g)}},defaultToCookie:this.defaultToCookie,cookie:{isSupported:P,set:Q,add:Q,get:R,remove:S,clearAll:T}}}]})}(window,window.angular);
-"use strict";app.controller("mainController",["$scope","$http","localStorageService",function(a,b,c){a.charactersUrl=getMarvelUrl("characters",10,0),a.posts=[],a.comicview=!1,a.total=10,a.pages=[],a.currentPage=0,a.lastPage=5,a.currentCharacter="",b.get(a.charactersUrl).success(function(b){a.posts=b.data.results,a.total=b.data.total;for(var c=0;c<a.total/10;c++)a.pages.push(c)}).error(function(a){console.log(a)}),a.searchCharacter=function(c){if(3<c.length){a.charactersUrl=getMarvelUrl("characters",10,a.currentPage)+("&nameStartsWith="+c),b.get(a.charactersUrl).success(function(b){a.posts=b.data.results}).error(function(a){console.log(a)})}},a.moreResults=function(){var c=0<arguments.length&&arguments[0]!==void 0?arguments[0]:"characters",d=1<arguments.length&&arguments[1]!==void 0?arguments[1]:10,e=2<arguments.length&&arguments[2]!==void 0?arguments[2]:1,f=0;a.currentPage=e,a.lastPage=e+5,1<e&&(f=d*(e-1)-1),a.charactersUrl=getMarvelUrl(c,d,f),console.log(a.charactersUrl),b.get(a.charactersUrl).success(function(b){a.posts=b.data.results}).error(function(a){console.log(a)})},a.actualComic={title:"No comic selected",description:"No comic selected",URI:"No comic selected",thumbnail:"No comic selected",price:"No comic selected",url:"no comic selected"},a.changeActualComic=function(c){if(a.comicview=!a.comicview,"reset"===c)a.actualComic.title="No comic selected",a.actualComic.description="No comic selected",a.actualComic.URI="No comic selected",a.actualComic.thumbnail="No comic selected",a.actualComic.price="No comic selected",a.actualComic.url="No comic selected";else{c=c.replace("http","https"),c+=getHash(),console.log(c);var d={};b.get(c).success(function(b){d=b.data.results[0],console.log(d),a.actualComic.title=d.title,a.actualComic.description=1<d.description?d.description:"This comic doesn't have a description",a.actualComic.URI=d.resourceURI,a.actualComic.thumbnail=d.thumbnail.path+"."+d.thumbnail.extension,a.actualComic.price=d.prices[0].price,a.actualComic.url=d.urls[0].url,console.log(a.actualComic)}).error(function(a){console.log("error"+a)})}},a.favourites=c.get("favourites-list")?c.get("favourites-list"):[],a.$watchCollection("favourites",function(){c.set("favourites-list",a.favourites)}),a.addFavourite=function(c){c=c.replace("http","https"),c+=getHash(),console.log(c);var d={};b.get(c).success(function(b){d=b.data.results[0];var c=a.favourites.some(function(a){return a.the_id===d.id});3>a.favourites.length?c?alert("You can't add the same comic more than 1 time"):a.favourites.push({the_id:d.id,title:d.title,thumbnail:d.thumbnail.path+"."+d.thumbnail.extension}):alert("You can't add more than 3 comics"),a.changeActualComic("reset")}).error(function(a){console.log("error"+a)})},a.deleteFavourite=function(b){a.favourites.splice(findWithAttr(a.favourites,"the_id",b),1)}}]);function findWithAttr(a,b,c){for(var d=0;d<a.length;d+=1)if(a[d][b]===c)return d;return-1}
+"use strict";
+
+/**
+*
+*  MD5 (Message-Digest Algorithm)
+*  http://www.webtoolkit.info/
+*
+**/
+var MD5 = function MD5(string) {
+    function RotateLeft(lValue, iShiftBits) {
+        return lValue << iShiftBits | lValue >>> 32 - iShiftBits;
+    }
+    function AddUnsigned(lX, lY) {
+        var lX4, lY4, lX8, lY8, lResult;
+        lX8 = lX & 0x80000000;
+        lY8 = lY & 0x80000000;
+        lX4 = lX & 0x40000000;
+        lY4 = lY & 0x40000000;
+        lResult = (lX & 0x3FFFFFFF) + (lY & 0x3FFFFFFF);
+        if (lX4 & lY4) {
+            return lResult ^ 0x80000000 ^ lX8 ^ lY8;
+        }
+        if (lX4 | lY4) {
+            if (lResult & 0x40000000) {
+                return lResult ^ 0xC0000000 ^ lX8 ^ lY8;
+            } else {
+                return lResult ^ 0x40000000 ^ lX8 ^ lY8;
+            }
+        } else {
+            return lResult ^ lX8 ^ lY8;
+        }
+    }
+    function F(x, y, z) {
+        return x & y | ~x & z;
+    }
+    function G(x, y, z) {
+        return x & z | y & ~z;
+    }
+    function H(x, y, z) {
+        return x ^ y ^ z;
+    }
+    function I(x, y, z) {
+        return y ^ (x | ~z);
+    }
+    function FF(a, b, c, d, x, s, ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
+    };
+    function GG(a, b, c, d, x, s, ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
+    };
+    function HH(a, b, c, d, x, s, ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
+    };
+    function II(a, b, c, d, x, s, ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
+    };
+    function ConvertToWordArray(string) {
+        var lWordCount;
+        var lMessageLength = string.length;
+        var lNumberOfWords_temp1 = lMessageLength + 8;
+        var lNumberOfWords_temp2 = (lNumberOfWords_temp1 - lNumberOfWords_temp1 % 64) / 64;
+        var lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16;
+        var lWordArray = Array(lNumberOfWords - 1);
+        var lBytePosition = 0;
+        var lByteCount = 0;
+        while (lByteCount < lMessageLength) {
+            lWordCount = (lByteCount - lByteCount % 4) / 4;
+            lBytePosition = lByteCount % 4 * 8;
+            lWordArray[lWordCount] = lWordArray[lWordCount] | string.charCodeAt(lByteCount) << lBytePosition;
+            lByteCount++;
+        }
+        lWordCount = (lByteCount - lByteCount % 4) / 4;
+        lBytePosition = lByteCount % 4 * 8;
+        lWordArray[lWordCount] = lWordArray[lWordCount] | 0x80 << lBytePosition;
+        lWordArray[lNumberOfWords - 2] = lMessageLength << 3;
+        lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29;
+        return lWordArray;
+    };
+    function WordToHex(lValue) {
+        var WordToHexValue = "",
+            WordToHexValue_temp = "",
+            lByte,
+            lCount;
+        for (lCount = 0; lCount <= 3; lCount++) {
+            lByte = lValue >>> lCount * 8 & 255;
+            WordToHexValue_temp = "0" + lByte.toString(16);
+            WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length - 2, 2);
+        }
+        return WordToHexValue;
+    };
+    function Utf8Encode(string) {
+        string = string.replace(/\r\n/g, "\n");
+        var utftext = "";
+        for (var n = 0; n < string.length; n++) {
+            var c = string.charCodeAt(n);
+            if (c < 128) {
+                utftext += String.fromCharCode(c);
+            } else if (c > 127 && c < 2048) {
+                utftext += String.fromCharCode(c >> 6 | 192);
+                utftext += String.fromCharCode(c & 63 | 128);
+            } else {
+                utftext += String.fromCharCode(c >> 12 | 224);
+                utftext += String.fromCharCode(c >> 6 & 63 | 128);
+                utftext += String.fromCharCode(c & 63 | 128);
+            }
+        }
+        return utftext;
+    };
+    var x = Array();
+    var k, AA, BB, CC, DD, a, b, c, d;
+    var S11 = 7,
+        S12 = 12,
+        S13 = 17,
+        S14 = 22;
+    var S21 = 5,
+        S22 = 9,
+        S23 = 14,
+        S24 = 20;
+    var S31 = 4,
+        S32 = 11,
+        S33 = 16,
+        S34 = 23;
+    var S41 = 6,
+        S42 = 10,
+        S43 = 15,
+        S44 = 21;
+    string = Utf8Encode(string);
+    x = ConvertToWordArray(string);
+    a = 0x67452301;b = 0xEFCDAB89;c = 0x98BADCFE;d = 0x10325476;
+    for (k = 0; k < x.length; k += 16) {
+        AA = a;BB = b;CC = c;DD = d;
+        a = FF(a, b, c, d, x[k + 0], S11, 0xD76AA478);
+        d = FF(d, a, b, c, x[k + 1], S12, 0xE8C7B756);
+        c = FF(c, d, a, b, x[k + 2], S13, 0x242070DB);
+        b = FF(b, c, d, a, x[k + 3], S14, 0xC1BDCEEE);
+        a = FF(a, b, c, d, x[k + 4], S11, 0xF57C0FAF);
+        d = FF(d, a, b, c, x[k + 5], S12, 0x4787C62A);
+        c = FF(c, d, a, b, x[k + 6], S13, 0xA8304613);
+        b = FF(b, c, d, a, x[k + 7], S14, 0xFD469501);
+        a = FF(a, b, c, d, x[k + 8], S11, 0x698098D8);
+        d = FF(d, a, b, c, x[k + 9], S12, 0x8B44F7AF);
+        c = FF(c, d, a, b, x[k + 10], S13, 0xFFFF5BB1);
+        b = FF(b, c, d, a, x[k + 11], S14, 0x895CD7BE);
+        a = FF(a, b, c, d, x[k + 12], S11, 0x6B901122);
+        d = FF(d, a, b, c, x[k + 13], S12, 0xFD987193);
+        c = FF(c, d, a, b, x[k + 14], S13, 0xA679438E);
+        b = FF(b, c, d, a, x[k + 15], S14, 0x49B40821);
+        a = GG(a, b, c, d, x[k + 1], S21, 0xF61E2562);
+        d = GG(d, a, b, c, x[k + 6], S22, 0xC040B340);
+        c = GG(c, d, a, b, x[k + 11], S23, 0x265E5A51);
+        b = GG(b, c, d, a, x[k + 0], S24, 0xE9B6C7AA);
+        a = GG(a, b, c, d, x[k + 5], S21, 0xD62F105D);
+        d = GG(d, a, b, c, x[k + 10], S22, 0x2441453);
+        c = GG(c, d, a, b, x[k + 15], S23, 0xD8A1E681);
+        b = GG(b, c, d, a, x[k + 4], S24, 0xE7D3FBC8);
+        a = GG(a, b, c, d, x[k + 9], S21, 0x21E1CDE6);
+        d = GG(d, a, b, c, x[k + 14], S22, 0xC33707D6);
+        c = GG(c, d, a, b, x[k + 3], S23, 0xF4D50D87);
+        b = GG(b, c, d, a, x[k + 8], S24, 0x455A14ED);
+        a = GG(a, b, c, d, x[k + 13], S21, 0xA9E3E905);
+        d = GG(d, a, b, c, x[k + 2], S22, 0xFCEFA3F8);
+        c = GG(c, d, a, b, x[k + 7], S23, 0x676F02D9);
+        b = GG(b, c, d, a, x[k + 12], S24, 0x8D2A4C8A);
+        a = HH(a, b, c, d, x[k + 5], S31, 0xFFFA3942);
+        d = HH(d, a, b, c, x[k + 8], S32, 0x8771F681);
+        c = HH(c, d, a, b, x[k + 11], S33, 0x6D9D6122);
+        b = HH(b, c, d, a, x[k + 14], S34, 0xFDE5380C);
+        a = HH(a, b, c, d, x[k + 1], S31, 0xA4BEEA44);
+        d = HH(d, a, b, c, x[k + 4], S32, 0x4BDECFA9);
+        c = HH(c, d, a, b, x[k + 7], S33, 0xF6BB4B60);
+        b = HH(b, c, d, a, x[k + 10], S34, 0xBEBFBC70);
+        a = HH(a, b, c, d, x[k + 13], S31, 0x289B7EC6);
+        d = HH(d, a, b, c, x[k + 0], S32, 0xEAA127FA);
+        c = HH(c, d, a, b, x[k + 3], S33, 0xD4EF3085);
+        b = HH(b, c, d, a, x[k + 6], S34, 0x4881D05);
+        a = HH(a, b, c, d, x[k + 9], S31, 0xD9D4D039);
+        d = HH(d, a, b, c, x[k + 12], S32, 0xE6DB99E5);
+        c = HH(c, d, a, b, x[k + 15], S33, 0x1FA27CF8);
+        b = HH(b, c, d, a, x[k + 2], S34, 0xC4AC5665);
+        a = II(a, b, c, d, x[k + 0], S41, 0xF4292244);
+        d = II(d, a, b, c, x[k + 7], S42, 0x432AFF97);
+        c = II(c, d, a, b, x[k + 14], S43, 0xAB9423A7);
+        b = II(b, c, d, a, x[k + 5], S44, 0xFC93A039);
+        a = II(a, b, c, d, x[k + 12], S41, 0x655B59C3);
+        d = II(d, a, b, c, x[k + 3], S42, 0x8F0CCC92);
+        c = II(c, d, a, b, x[k + 10], S43, 0xFFEFF47D);
+        b = II(b, c, d, a, x[k + 1], S44, 0x85845DD1);
+        a = II(a, b, c, d, x[k + 8], S41, 0x6FA87E4F);
+        d = II(d, a, b, c, x[k + 15], S42, 0xFE2CE6E0);
+        c = II(c, d, a, b, x[k + 6], S43, 0xA3014314);
+        b = II(b, c, d, a, x[k + 13], S44, 0x4E0811A1);
+        a = II(a, b, c, d, x[k + 4], S41, 0xF7537E82);
+        d = II(d, a, b, c, x[k + 11], S42, 0xBD3AF235);
+        c = II(c, d, a, b, x[k + 2], S43, 0x2AD7D2BB);
+        b = II(b, c, d, a, x[k + 9], S44, 0xEB86D391);
+        a = AddUnsigned(a, AA);
+        b = AddUnsigned(b, BB);
+        c = AddUnsigned(c, CC);
+        d = AddUnsigned(d, DD);
+    }
+    var temp = WordToHex(a) + WordToHex(b) + WordToHex(c) + WordToHex(d);
+    return temp.toLowerCase();
+};
+"use strict";
+
+function getHash() {
+	var publicKey = "c97a0c85709eb1a2a71994d9261ffbd6";
+	var privateKey = "ba63ece6936566ddc4bf1219499fd705b8e32934";
+	var ts = new Date().getTime();
+	var hash = MD5(ts + privateKey + publicKey);
+	hash = '?apikey=' + publicKey + "&ts=" + ts + "&hash=" + hash;
+	return hash;
+}
+
+function getMarvelUrl(url) {
+	var base = "https://gateway.marvel.com/v1/public/" + url.complement + getHash();
+	if (url.limit != '') {
+		base += "&limit=" + url.limit;
+	}
+	if (url.offset != '') {
+		base += "&offset=" + url.offset;
+	}
+	if (url.order != '') {
+		base += "&orderBy=" + url.order;
+	}
+	if (url.name != '') {
+		base += "&nameStartsWith=" + url.name;
+	}
+	//console.log( base );
+	return base;
+};
+"use strict";
+
+/*var url = getMarvelUrl( 'characters') ;
+
+ajax_get( url , function(data) {
+	var datos = data['data']['results'];
+	console.log(datos);
+	var listado = "";
+	datos.forEach(function(entry){ 
+		//console.log(entry);
+		//listado = listado + "<li class='character__item' data-name='" + entry["name"] + "'>" + entry["description"] + "</li>";
+	});
+	//document.getElementById("characters-list").innerHtml = listado;
+});
+ */
+var app = angular.module("marvelApi", ["LocalStorageModule"]);
+"use strict";
+
+/**
+ * An Angular module that gives you access to the browsers local storage
+ * @version v0.7.1 - 2017-06-21
+ * @link https://github.com/grevory/angular-local-storage
+ * @author grevory <greg@gregpike.ca>
+ * @license MIT License, http://www.opensource.org/licenses/MIT
+ */
+!function (a, b) {
+  var c = b.isDefined,
+      d = b.isUndefined,
+      e = b.isNumber,
+      f = b.isObject,
+      g = b.isArray,
+      h = b.isString,
+      i = b.extend,
+      j = b.toJson;b.module("LocalStorageModule", []).provider("localStorageService", function () {
+    this.prefix = "ls", this.storageType = "localStorage", this.cookie = { expiry: 30, path: "/", secure: !1 }, this.defaultToCookie = !0, this.notify = { setItem: !0, removeItem: !1 }, this.setPrefix = function (a) {
+      return this.prefix = a, this;
+    }, this.setStorageType = function (a) {
+      return this.storageType = a, this;
+    }, this.setDefaultToCookie = function (a) {
+      return this.defaultToCookie = !!a, this;
+    }, this.setStorageCookie = function (a, b, c) {
+      return this.cookie.expiry = a, this.cookie.path = b, this.cookie.secure = c, this;
+    }, this.setStorageCookieDomain = function (a) {
+      return this.cookie.domain = a, this;
+    }, this.setNotify = function (a, b) {
+      return this.notify = { setItem: a, removeItem: b }, this;
+    }, this.$get = ["$rootScope", "$window", "$document", "$parse", "$timeout", function (a, b, k, l, m) {
+      function n(c) {
+        if (c || (c = b.event), s.setItem && h(c.key) && w(c.key)) {
+          var d = v(c.key);m(function () {
+            a.$broadcast("LocalStorageModule.notification.changed", { key: d, newvalue: c.newValue, storageType: p.storageType });
+          });
+        }
+      }var o,
+          p = this,
+          q = p.prefix,
+          r = p.cookie,
+          s = p.notify,
+          t = p.storageType;k ? k[0] && (k = k[0]) : k = document, "." !== q.substr(-1) && (q = q ? q + "." : "");var u = function u(a) {
+        return q + a;
+      },
+          v = function v(a) {
+        return a.replace(new RegExp("^" + q, "g"), "");
+      },
+          w = function w(a) {
+        return 0 === a.indexOf(q);
+      },
+          x = function x() {
+        try {
+          var c = t in b && null !== b[t],
+              d = u("__" + Math.round(1e7 * Math.random()));return c && (o = b[t], o.setItem(d, ""), o.removeItem(d)), c;
+        } catch (b) {
+          return p.defaultToCookie && (t = "cookie"), a.$broadcast("LocalStorageModule.notification.error", b.message), !1;
+        }
+      },
+          y = x(),
+          z = function z(b, c, e) {
+        var f = J();try {
+          if (K(e), c = d(c) ? null : j(c), !y && p.defaultToCookie || "cookie" === p.storageType) return y || a.$broadcast("LocalStorageModule.notification.warning", "LOCAL_STORAGE_NOT_SUPPORTED"), s.setItem && a.$broadcast("LocalStorageModule.notification.setitem", { key: b, newvalue: c, storageType: "cookie" }), F(b, c);try {
+            o && o.setItem(u(b), c), s.setItem && a.$broadcast("LocalStorageModule.notification.setitem", { key: b, newvalue: c, storageType: p.storageType });
+          } catch (d) {
+            return a.$broadcast("LocalStorageModule.notification.error", d.message), F(b, c);
+          }return !0;
+        } finally {
+          K(f);
+        }
+      },
+          A = function A(b, c) {
+        var d = J();try {
+          if (K(c), !y && p.defaultToCookie || "cookie" === p.storageType) return y || a.$broadcast("LocalStorageModule.notification.warning", "LOCAL_STORAGE_NOT_SUPPORTED"), G(b);var e = o ? o.getItem(u(b)) : null;if (!e || "null" === e) return null;try {
+            return JSON.parse(e);
+          } catch (a) {
+            return e;
+          }
+        } finally {
+          K(d);
+        }
+      },
+          B = function B() {
+        var b = J();try {
+          var c = 0;arguments.length >= 1 && ("localStorage" === arguments[arguments.length - 1] || "sessionStorage" === arguments[arguments.length - 1]) && (c = 1, K(arguments[arguments.length - 1]));var d, e;for (d = 0; d < arguments.length - c; d++) {
+            if (e = arguments[d], !y && p.defaultToCookie || "cookie" === p.storageType) y || a.$broadcast("LocalStorageModule.notification.warning", "LOCAL_STORAGE_NOT_SUPPORTED"), s.removeItem && a.$broadcast("LocalStorageModule.notification.removeitem", { key: e, storageType: "cookie" }), H(e);else try {
+              o.removeItem(u(e)), s.removeItem && a.$broadcast("LocalStorageModule.notification.removeitem", { key: e, storageType: p.storageType });
+            } catch (b) {
+              a.$broadcast("LocalStorageModule.notification.error", b.message), H(e);
+            }
+          }
+        } finally {
+          K(b);
+        }
+      },
+          C = function C(b) {
+        var c = J();try {
+          if (K(b), !y) return a.$broadcast("LocalStorageModule.notification.warning", "LOCAL_STORAGE_NOT_SUPPORTED"), [];var d = q.length,
+              e = [];for (var f in o) {
+            if (f.substr(0, d) === q) try {
+              e.push(f.substr(d));
+            } catch (b) {
+              return a.$broadcast("LocalStorageModule.notification.error", b.Description), [];
+            }
+          }return e;
+        } finally {
+          K(c);
+        }
+      },
+          D = function D(b, c) {
+        var d = J();try {
+          K(c);var e = q ? new RegExp("^" + q) : new RegExp(),
+              f = b ? new RegExp(b) : new RegExp();if (!y && p.defaultToCookie || "cookie" === p.storageType) return y || a.$broadcast("LocalStorageModule.notification.warning", "LOCAL_STORAGE_NOT_SUPPORTED"), I();if (!y && !p.defaultToCookie) return !1;var g = q.length;for (var h in o) {
+            if (e.test(h) && f.test(h.substr(g))) try {
+              B(h.substr(g));
+            } catch (b) {
+              return a.$broadcast("LocalStorageModule.notification.error", b.message), I();
+            }
+          }return !0;
+        } finally {
+          K(d);
+        }
+      },
+          E = function () {
+        try {
+          return b.navigator.cookieEnabled || "cookie" in k && (k.cookie.length > 0 || (k.cookie = "test").indexOf.call(k.cookie, "test") > -1);
+        } catch (b) {
+          return a.$broadcast("LocalStorageModule.notification.error", b.message), !1;
+        }
+      }(),
+          F = function F(b, c, h, i) {
+        if (d(c)) return !1;if ((g(c) || f(c)) && (c = j(c)), !E) return a.$broadcast("LocalStorageModule.notification.error", "COOKIES_NOT_SUPPORTED"), !1;try {
+          var l = "",
+              m = new Date(),
+              n = "";if (null === c ? (m.setTime(m.getTime() + -864e5), l = "; expires=" + m.toGMTString(), c = "") : e(h) && 0 !== h ? (m.setTime(m.getTime() + 24 * h * 60 * 60 * 1e3), l = "; expires=" + m.toGMTString()) : 0 !== r.expiry && (m.setTime(m.getTime() + 24 * r.expiry * 60 * 60 * 1e3), l = "; expires=" + m.toGMTString()), b) {
+            var o = "; path=" + r.path;r.domain && (n = "; domain=" + r.domain), "boolean" == typeof i ? i === !0 && (n += "; secure") : r.secure === !0 && (n += "; secure"), k.cookie = u(b) + "=" + encodeURIComponent(c) + l + o + n;
+          }
+        } catch (b) {
+          return a.$broadcast("LocalStorageModule.notification.error", b.message), !1;
+        }return !0;
+      },
+          G = function G(b) {
+        if (!E) return a.$broadcast("LocalStorageModule.notification.error", "COOKIES_NOT_SUPPORTED"), !1;for (var c = k.cookie && k.cookie.split(";") || [], d = 0; d < c.length; d++) {
+          for (var e = c[d]; " " === e.charAt(0);) {
+            e = e.substring(1, e.length);
+          }if (0 === e.indexOf(u(b) + "=")) {
+            var f = decodeURIComponent(e.substring(q.length + b.length + 1, e.length));try {
+              var g = JSON.parse(f);return "number" == typeof g ? f : g;
+            } catch (a) {
+              return f;
+            }
+          }
+        }return null;
+      },
+          H = function H(a) {
+        F(a, null);
+      },
+          I = function I() {
+        for (var a = null, b = q.length, c = k.cookie.split(";"), d = 0; d < c.length; d++) {
+          for (a = c[d]; " " === a.charAt(0);) {
+            a = a.substring(1, a.length);
+          }var e = a.substring(b, a.indexOf("="));H(e);
+        }
+      },
+          J = function J() {
+        return t;
+      },
+          K = function K(a) {
+        return a && t !== a && (t = a, y = x()), y;
+      },
+          L = function L(a, b, d, e, g) {
+        e = e || b;var h = A(e, g);return null === h && c(d) ? h = d : f(h) && f(d) && (h = i(h, d)), l(b).assign(a, h), a.$watch(b, function (a) {
+          z(e, a, g);
+        }, f(a[b]));
+      };y && (b.addEventListener ? (b.addEventListener("storage", n, !1), a.$on("$destroy", function () {
+        b.removeEventListener("storage", n);
+      })) : b.attachEvent && (b.attachEvent("onstorage", n), a.$on("$destroy", function () {
+        b.detachEvent("onstorage", n);
+      })));var M = function M(a) {
+        var c = J();try {
+          K(a);for (var d = 0, e = b[t], f = 0; f < e.length; f++) {
+            0 === e.key(f).indexOf(q) && d++;
+          }return d;
+        } finally {
+          K(c);
+        }
+      },
+          N = function N(a) {
+        q = a;
+      };return { isSupported: y, getStorageType: J, setStorageType: K, setPrefix: N, set: z, add: z, get: A, keys: C, remove: B, clearAll: D, bind: L, deriveKey: u, underiveKey: v, length: M, defaultToCookie: this.defaultToCookie, cookie: { isSupported: E, set: F, add: F, get: G, remove: H, clearAll: I } };
+    }];
+  });
+}(window, window.angular);
+//# sourceMappingURL=angular-local-storage.min.js.map
+'use strict';
+
+app.factory('marvelFactory', function ($http, $log, $q) {
+  return {
+    getData: function getData(config) {
+      var deferred = $q.defer();
+      var url = getMarvelUrl(config);
+
+      $http.get(url).success(function (data) {
+        //console.log(data);
+        var pages = [];
+        for (var i = 0; i < data.data.total / config.limit; i++) {
+          pages.push(i);
+        }
+        deferred.resolve({
+          attribution: data.attributionHTML,
+          copyright: data.copyright,
+          count: data.data.count,
+          pages: pages,
+          posts: data.data.results,
+          total: data.data.total
+        });
+      }).error(function (msg, code) {
+        deferred.reject(msg);
+        $log.error(msg, code);
+      });
+
+      return deferred.promise;
+    }
+  };
+});
+"use strict";
+
+app.controller('mainController', ["$scope", "$http", "localStorageService", "marvelFactory", function ($scope, $http, $storaged, marvel) {
+	$scope.config = {
+		complement: 'characters',
+		limit: 10,
+		name: '',
+		offset: 0,
+		order: 'name',
+		numberPages: 5
+	};
+
+	$scope.posts = [];
+	$scope.comicview = false;
+	$scope.total = 10;
+	$scope.pages = [];
+	$scope.currentPage = 0;
+	$scope.lastPage = 5;
+
+	//$scope.data = marvel.getData( $scope.config );
+	marvel.getData($scope.config).then(function (data) {
+		$scope.total = data.total;
+		$scope.posts = data.posts;
+		$scope.pages = data.pages;
+	});
+
+	$scope.searchCharacter = function (name) {
+		$scope.config.name = name;
+		marvel.getData($scope.config).then(function (data) {
+			$scope.total = data.total;
+			$scope.posts = data.posts;
+			$scope.pages = data.pages;
+		});
+	};
+
+	$scope.moreResults = function () {
+		var complement = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'characters';
+		var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
+		var n = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+		var name = arguments[3];
+
+		var offset = 0;
+		$scope.currentPage = n;
+		$scope.lastPage = n + $scope.config.numberPages;
+		if (n > 1) {
+			offset = limit * (n - 1) - 1;
+		}
+		$scope.config.complement = name;
+		$scope.config.complement = complement;
+		$scope.config.limit = limit;
+		$scope.config.offset = offset;
+		marvel.getData($scope.config).then(function (data) {
+			$scope.total = data.total;
+			$scope.posts = data.posts;
+			$scope.pages = data.pages;
+		});
+	};
+
+	$scope.actualComic = {
+		title: 'No comic selected',
+		description: 'No comic selected',
+		URI: 'No comic selected',
+		thumbnail: 'No comic selected',
+		price: 'No comic selected',
+		url: 'no comic selected'
+	};
+
+	$scope.changeActualComic = function ($resourceURI) {
+		$scope.comicview = !$scope.comicview;
+
+		if ($resourceURI === 'reset') {
+			$scope.actualComic.title = 'No comic selected';
+			$scope.actualComic.description = 'No comic selected';
+			$scope.actualComic.URI = 'No comic selected';
+			$scope.actualComic.thumbnail = 'No comic selected';
+			$scope.actualComic.price = 'No comic selected';
+			$scope.actualComic.url = 'No comic selected';
+		} else {
+			$resourceURI = $resourceURI.replace('http', 'https');
+			$resourceURI = $resourceURI + getHash();
+			//console.log( $resourceURI );
+			var $nowComic = {};
+
+			$http.get($resourceURI).success(function (data) {
+				$nowComic = data.data.results[0];
+				//console.log( $nowComic );
+				$scope.actualComic.title = $nowComic.title;
+				$scope.actualComic.description = $nowComic.description > 1 ? $nowComic.description : "This comic doesn't have a description";
+				$scope.actualComic.URI = $nowComic.resourceURI;
+				$scope.actualComic.thumbnail = $nowComic.thumbnail.path + '.' + $nowComic.thumbnail.extension;
+				$scope.actualComic.price = $nowComic.prices[0].price;
+				$scope.actualComic.url = $nowComic.urls[0].url;
+
+				//console.log( $scope.actualComic );
+			}).error(function (err) {
+				console.log("error" + err);
+			});
+		}
+	};
+
+	if ($storaged.get("favourites-list")) {
+		$scope.favourites = $storaged.get("favourites-list");
+	} else {
+		$scope.favourites = [];
+	}
+
+	$scope.$watchCollection('favourites', function (newValue, oldValue) {
+		$storaged.set("favourites-list", $scope.favourites);
+	});
+
+	$scope.addFavourite = function ($resourceURI) {
+		$resourceURI = $resourceURI.replace('http', 'https');
+		$resourceURI = $resourceURI + getHash();
+		//console.log( $resourceURI );
+		var $nowComic = {};
+
+		$http.get($resourceURI).success(function (data) {
+			//console.log(data.data.results);
+			$nowComic = data.data.results[0];
+
+			var found = $scope.favourites.some(function (el) {
+				return el.the_id === $nowComic.id;
+			});
+			if ($scope.favourites.length < 3) {
+				if (!found) {
+					$scope.favourites.push({
+						the_id: $nowComic.id,
+						title: $nowComic.title,
+						thumbnail: $nowComic.thumbnail.path + '.' + $nowComic.thumbnail.extension
+					});
+				} else {
+					alert("You can't add the same comic more than 1 time");
+				}
+			} else {
+				alert("You can't add more than 3 comics");
+			}
+			$scope.changeActualComic('reset');
+		}).error(function (err) {
+			console.log("error" + err);
+		});
+	};
+
+	$scope.deleteFavourite = function ($the_id) {
+		$scope.favourites.splice(findWithAttr($scope.favourites, 'the_id', $the_id), 1);
+	};
+}]);
+
+function findWithAttr(array, attr, value) {
+	for (var i = 0; i < array.length; i += 1) {
+		if (array[i][attr] === value) {
+			return i;
+		}
+	}
+	return -1;
+}
 //# sourceMappingURL=final.js.map

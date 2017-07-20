@@ -14,10 +14,16 @@ gulp.task('scripts', function(){
     'main.js',
     //'route.js',
     'angular/dist/angular-local-storage.js',
+    'angular/services/factory-marvel.js',
     'angular/controllers/main.js'
   ], {cwd: 'src/javascript'} )
     .pipe(sourcemaps.init())
     .pipe(babel({presets: ['babili']}))
+    .on('error', function(e) {
+      console.log('>>> ERROR', e);
+      // emit here
+      this.emit('end');
+    })
     .pipe(concat('final.js'))
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest('build/js'))
