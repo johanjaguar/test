@@ -13,9 +13,9 @@
     </div>
     <div class="row" ng-show="post.comics.items.length > 0">
       <h3 class="character-comics-title">Related comics</h3>
-      <ul class="character-comic-list">
+      <ul class="character-comic-list" ng-controller = "favouriteController">
         <li ng-repeat="comic in post.comics.items">
-          <div ng-click="changeActualComic( comic.resourceURI )">{{comic.name}}</div>
+          <div ng-click="getActualComic( comic.resourceURI )">{{comic.name}}</div>
 
         </li>
       </ul>  
