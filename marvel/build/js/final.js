@@ -676,7 +676,7 @@ app.controller('favouriteController', ["$scope", "$http", "localStorageService",
   };
 
   $scope.addFavourite = function ($resourceURI) {
-
+    $resourceURI = $resourceURI.replace('http', 'https');
     var $nowComic = {};
 
     $scope.config = {
