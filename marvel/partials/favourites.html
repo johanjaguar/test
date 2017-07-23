@@ -1,11 +1,11 @@
-<h2 class="favourites-title">My favourites</h2>
-<ul class="favourites-list" ng-cloak>
+<h2 class="favourites-title" >My favourites</h2>
+<ul class="favourites-list" ng-cloak >
   <li ng-repeat="favourite in favourites " class="favourite">
     <div class="favourite-thumbnail-portrait">
      <img class="favourite-thumbnail" src="{{favourite.thumbnail}}"/>
     </div>  
     <h3 class="favourite-title">{{favourite.title}}</h3> 
-    <img class="favourite-delete" src="build/images-op/btn-delete.png" ng-click="deleteFavourite(favourite.the_id)"></div>
+    <img class="favourite-delete" src="build/images-op/btn-delete.png" ng-click="deleteFavourite( favourite.the_id )"></div>
 
   </li>
 </ul>
