@@ -217,20 +217,30 @@ function getHash() {
 }
 
 function getMarvelUrl(url) {
-	var base = "https://gateway.marvel.com/v1/public/" + url.complement + getHash();
+	var base = "https://gateway.marvel.com/v1/public/";
+
+	if (url.complement == 'comic') {
+		base = url.base + getHash();
+	} else {
+		base += url.complement + getHash();
+	}
+
 	if (url.limit != '') {
 		base += "&limit=" + url.limit;
 	}
+
 	if (url.offset != '') {
 		base += "&offset=" + url.offset;
 	}
+
 	if (url.order != '') {
 		base += "&orderBy=" + url.order;
 	}
+
 	if (url.name != '') {
 		base += "&nameStartsWith=" + url.name;
 	}
-	//console.log( base );
+
 	return base;
 };
 "use strict";
@@ -474,6 +484,30 @@ app.factory('marvelFactory', function ($http, $log, $q) {
     }
   };
 });
+'use strict';
+
+app.factory('comicFactory', function ($http, $log, $q) {
+  return {
+    getData: function getData(config) {
+      var deferred = $q.defer();
+      var url = getMarvelUrl(config);
+
+      $http.get(url).success(function (data) {
+        deferred.resolve({
+          attribution: data.attributionHTML,
+          copyright: data.copyright,
+          count: data.data.count,
+          comic: data.data.results[0],
+          total: data.data.total
+        });
+      }).error(function (msg, code) {
+        deferred.reject(msg);
+        $log.error(msg, code);
+      });
+      return deferred.promise;
+    }
+  };
+});
 "use strict";
 
 app.controller('mainController', ["$scope", "$http", "localStorageService", "marvelFactory", function ($scope, $http, $storaged, marvel) {
@@ -486,6 +520,7 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", "mar
 		numberPages: 5
 	};
 
+	$scope.actualComic = {};
 	$scope.posts = [];
 	$scope.comicview = false;
 	$scope.total = 10;
@@ -493,50 +528,7 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", "mar
 	$scope.currentPage = 0;
 	$scope.lastPage = 5;
 
-	//Private functions 
-	$scope.getPost = function (configuration) {
-		//$scope.data = marvel.getData( $scope.config );
-		marvel.getData($scope.config).then(function (data) {
-			$scope.total = data.total;
-			$scope.posts = data.posts;
-			$scope.pages = data.pages;
-		});
-	};
-
-	$scope.getPost($scope.config);
-
-	$scope.changeActualComic = function ($resourceURI) {
-		$scope.comicview = !$scope.comicview;
-
-		if ($resourceURI === 'reset') {
-			$scope.actualComic.title = 'No comic selected';
-			$scope.actualComic.description = 'No comic selected';
-			$scope.actualComic.URI = 'No comic selected';
-			$scope.actualComic.thumbnail = 'No comic selected';
-			$scope.actualComic.price = 'No comic selected';
-			$scope.actualComic.url = 'No comic selected';
-		} else {
-			$resourceURI = $resourceURI.replace('http', 'https');
-			$resourceURI = $resourceURI + getHash();
-			//console.log( $resourceURI );
-			var $nowComic = {};
-
-			$http.get($resourceURI).success(function (data) {
-				$nowComic = data.data.results[0];
-				//console.log( $nowComic );
-				$scope.actualComic.title = $nowComic.title;
-				$scope.actualComic.description = $nowComic.description > 1 ? $nowComic.description : "This comic doesn't have a description";
-				$scope.actualComic.URI = $nowComic.resourceURI;
-				$scope.actualComic.thumbnail = $nowComic.thumbnail.path + '.' + $nowComic.thumbnail.extension;
-				$scope.actualComic.price = $nowComic.prices[0].price;
-				$scope.actualComic.url = $nowComic.urls[0].url;
-
-				//console.log( $scope.actualComic );
-			}).error(function (err) {
-				console.log("error" + err);
-			});
-		}
-	};
+	$scope.favourites = [];
 
 	if ($storaged.get("favourites-list")) {
 		$scope.favourites = $storaged.get("favourites-list");
@@ -548,10 +540,42 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", "mar
 		$storaged.set("favourites-list", $scope.favourites);
 	});
 
+	//Function that modify the value of the post to change the different interaction in the flow
+	$scope.getPost = function (configuration) {
+		//$scope.data = marvel.getData( $scope.config );
+		marvel.getData($scope.config).then(function (data) {
+			$scope.total = data.total;
+			$scope.posts = data.posts;
+			$scope.pages = data.pages;
+		});
+	};
+
+	$scope.changeView = function () {
+		$scope.comicview = !$scope.comicview;
+	};
+
 	//Private functions 
 	$scope.changePost = function (value) {
 		$scope.posts = value;
 		console.log(value);
+	};
+
+	$scope.changeActualComic = function (comic) {
+		if (comic.title == 'No comic selected') {
+			$scope.actualComic.title = 'No comic selected';
+			$scope.actualComic.description = 'No comic selected';
+			$scope.actualComic.URI = 'No comic selected';
+			$scope.actualComic.thumbnail = 'No comic selected';
+			$scope.actualComic.price = 'No comic selected';
+			$scope.actualComic.url = 'No comic selected';
+		} else {
+			$scope.actualComic.title = comic.title;
+			$scope.actualComic.description = comic.description > 1 ? comic.description : "This comic doesn't have a description";
+			$scope.actualComic.URI = comic.resourceURI;
+			$scope.actualComic.thumbnail = comic.thumbnail.path + '.' + comic.thumbnail.extension;
+			$scope.actualComic.price = comic.prices[0].price;
+			$scope.actualComic.url = comic.urls[0].url;
+		}
 	};
 
 	$scope.getPost = function (configuration) {
@@ -563,41 +587,19 @@ app.controller('mainController', ["$scope", "$http", "localStorageService", "mar
 		});
 	};
 
-	$scope.addFavourite = function ($resourceURI) {
-		$resourceURI = $resourceURI.replace('http', 'https');
-		$resourceURI = $resourceURI + getHash();
-		//console.log( $resourceURI );
-		var $nowComic = {};
-
-		$http.get($resourceURI).success(function (data) {
-			//console.log(data.data.results);
-			$nowComic = data.data.results[0];
-
-			var found = $scope.favourites.some(function (el) {
-				return el.the_id === $nowComic.id;
-			});
-			if ($scope.favourites.length < 3) {
-				if (!found) {
-					$scope.favourites.push({
-						the_id: $nowComic.id,
-						title: $nowComic.title,
-						thumbnail: $nowComic.thumbnail.path + '.' + $nowComic.thumbnail.extension
-					});
-				} else {
-					alert("You can't add the same comic more than 1 time");
-				}
-			} else {
-				alert("You can't add more than 3 comics");
-			}
-			$scope.changeActualComic('reset');
-		}).error(function (err) {
-			console.log("error" + err);
+	$scope.pushFavourite = function ($nowComic) {
+		$scope.favourites.push({
+			the_id: $nowComic.id,
+			title: $nowComic.title,
+			thumbnail: $nowComic.thumbnail.path + '.' + $nowComic.thumbnail.extension
 		});
 	};
 
-	$scope.deleteFavourite = function ($the_id) {
+	$scope.spliceFavourite = function ($the_id) {
 		$scope.favourites.splice(findWithAttr($scope.favourites, 'the_id', $the_id), 1);
 	};
+
+	$scope.getPost($scope.config);
 }]);
 
 function findWithAttr(array, attr, value) {
@@ -636,6 +638,73 @@ app.controller('moreResultsController', ["$scope", function ($scope) {
     $scope.config.limit = limit;
     $scope.config.offset = offset;
     $scope.getPost($scope.config);
+  };
+}]);
+"use strict";
+
+app.controller('favouriteController', ["$scope", "$http", "localStorageService", "comicFactory", function ($scope, $http, $storaged, factory) {
+
+  $scope.deleteFavourite = function ($the_id) {
+    $scope.spliceFavourite($the_id);
+  };
+
+  $scope.getActualComic = function ($resourceURI) {
+    $scope.changeView();
+
+    if ($resourceURI === 'reset') {
+      var nowComic = {};
+      nowComic.title = 'No comic selected';
+      $scope.changeActualComic(nowComic);
+    } else {
+      $resourceURI = $resourceURI.replace('http', 'https');
+
+      $scope.config = {
+        base: $resourceURI,
+        complement: 'comic',
+        limit: 100,
+        offset: 0,
+        name: '',
+        order: 'modified'
+      };
+
+      factory.getData($scope.config).then(function (data) {
+        $scope.total = data.total;
+        console.log(data.comic);
+        $scope.changeActualComic(data.comic);
+      });
+    }
+  };
+
+  $scope.addFavourite = function ($resourceURI) {
+
+    var $nowComic = {};
+
+    $scope.config = {
+      base: $resourceURI,
+      complement: 'comic',
+      limit: 100,
+      offset: 0,
+      name: '',
+      order: 'modified'
+    };
+
+    factory.getData($scope.config).then(function (data) {
+      $scope.total = data.total;
+      $nowComic = data.comic;
+      var found = $scope.favourites.some(function (el) {
+        return el.the_id === $nowComic.id;
+      });
+      if ($scope.favourites.length < 3) {
+        if (!found) {
+          $scope.pushFavourite($nowComic);
+        } else {
+          alert("You can't add the same comic more than 1 time");
+        }
+      } else {
+        alert("You can't add more than 3 comics");
+      }
+      $scope.getActualComic('reset');
+    });
   };
 }]);
 //# sourceMappingURL=final.js.map

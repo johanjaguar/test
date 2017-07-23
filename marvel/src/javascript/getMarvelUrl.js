@@ -8,19 +8,30 @@ function getHash(){
 }
 
 function getMarvelUrl ( url ) {
-	var base = "https://gateway.marvel.com/v1/public/" + url.complement + getHash();  
+	var base = "https://gateway.marvel.com/v1/public/";
+	
+	if( url.complement == 'comic' ) {
+		base = url.base + getHash();
+	}
+	else{
+		base +=  url.complement + getHash();	
+	}
+	
 	if( url.limit != '' ) {
 		base += "&limit=" + url.limit;
 	}
+
 	if( url.offset != '' ) {
 		base += "&offset=" + url.offset;
 	}
+
 	if( url.order != '' ) {
 		base += "&orderBy=" + url.order;
 	}
+
 	if( url.name != '' ) {
 		base += "&nameStartsWith=" + url.name;
 	}
-	//console.log( base );
+	
 	return base; 
 }; 
