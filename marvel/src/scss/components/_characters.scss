@@ -11,6 +11,7 @@
   background: $color-fondo-item;
   border: 20px solid $color-fondo-content;
   box-sizing: border-box;
+  height: 650px;
   list-style: none;
   margin: 20px auto;
   padding-bottom: 20px;  
@@ -38,7 +39,7 @@
     box-sizing: border-box;
     float: right;
     padding: 0;
-    width: 60%;
+    width: 54%;
   }
 
   &-name {
@@ -82,7 +83,9 @@
   }
 
   &-comic-list {
+    height: 320px;
     list-style: none;
+    overflow-y: auto;
     padding-left: 20px;
 
     li {

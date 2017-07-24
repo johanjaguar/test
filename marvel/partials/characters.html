@@ -1,6 +1,6 @@
 <h2 class="character-title">Characters</h2>
 <ul class="characters" ng-cloak>
-  <li ng-repeat="post in posts " class="character">
+  <li ng-repeat="post in posts " class="character" data-index="{{$index}}">
     <div class="row">
       <div class="character-thumbnail-portrait">
         <div class="character-thumbnail" style="background: url('{{post.thumbnail.path + '.' + post.thumbnail.extension}}'); background-size: cover"></div>  
@@ -11,7 +11,7 @@
         <a href="{{post.urls[1]}}" class="character-view-more">VIEW MORE</a>
       </div>
     </div>
-    <div class="row" ng-show="post.comics.items.length > 0">
+    <div class="row" ng-show="post.comics.items.length">
       <h3 class="character-comics-title">Related comics</h3>
       <ul class="character-comic-list" ng-controller = "favouriteController">
         <li ng-repeat="comic in post.comics.items">

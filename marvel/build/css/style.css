@@ -161,13 +161,14 @@ h2::before {
   background: #fff;
   border: 20px solid #eaeaea;
   box-sizing: border-box;
+  height: 650px;
   list-style: none;
   margin: 20px auto;
   padding-bottom: 20px;
   width: 50%;
 }
 
-/* line 19, src/scss/components/_characters.scss */
+/* line 20, src/scss/components/_characters.scss */
 .character-thumbnail-portrait {
   border-radius: 50%;
   display: flex;
@@ -179,7 +180,7 @@ h2::before {
   width: 200px;
 }
 
-/* line 30, src/scss/components/_characters.scss */
+/* line 31, src/scss/components/_characters.scss */
 .character-thumbnail {
   height: 200px;
   max-width: 100%;
@@ -187,15 +188,15 @@ h2::before {
   width: 200px;
 }
 
-/* line 37, src/scss/components/_characters.scss */
+/* line 38, src/scss/components/_characters.scss */
 .character-main-info {
   box-sizing: border-box;
   float: right;
   padding: 0;
-  width: 60%;
+  width: 54%;
 }
 
-/* line 44, src/scss/components/_characters.scss */
+/* line 45, src/scss/components/_characters.scss */
 .character-name {
   font-size: 1.8rem;
   font-size: 18px;
@@ -206,12 +207,12 @@ h2::before {
   text-transform: uppercase;
 }
 
-/* line 52, src/scss/components/_characters.scss */
+/* line 53, src/scss/components/_characters.scss */
 .character-name:hover {
   color: #e81d22;
 }
 
-/* line 57, src/scss/components/_characters.scss */
+/* line 58, src/scss/components/_characters.scss */
 .character-description {
   font-size: 1.3rem;
   font-size: 13px;
@@ -221,7 +222,7 @@ h2::before {
   margin-bottom: 20px;
 }
 
-/* line 65, src/scss/components/_characters.scss */
+/* line 66, src/scss/components/_characters.scss */
 .character-view-more {
   font-size: 1.3rem;
   font-size: 13px;
@@ -233,7 +234,7 @@ h2::before {
   text-decoration: none;
 }
 
-/* line 75, src/scss/components/_characters.scss */
+/* line 76, src/scss/components/_characters.scss */
 .character-comics-title {
   font-size: 1.8rem;
   font-size: 18px;
@@ -244,13 +245,15 @@ h2::before {
   text-transform: capitalize;
 }
 
-/* line 84, src/scss/components/_characters.scss */
+/* line 85, src/scss/components/_characters.scss */
 .character-comic-list {
+  height: 320px;
   list-style: none;
+  overflow-y: auto;
   padding-left: 20px;
 }
 
-/* line 88, src/scss/components/_characters.scss */
+/* line 91, src/scss/components/_characters.scss */
 .character-comic-list li {
   font-size: 1.3rem;
   font-size: 13px;
@@ -264,7 +267,7 @@ h2::before {
   width: 50%;
 }
 
-/* line 99, src/scss/components/_characters.scss */
+/* line 102, src/scss/components/_characters.scss */
 .character-comic-list li:hover {
   color: #e81d22;
 }
